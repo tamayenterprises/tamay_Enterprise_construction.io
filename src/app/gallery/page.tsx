@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GalleryClientProof } from "@/components/gallery/GalleryClientProof";
+import { GalleryFinalCta } from "@/components/gallery/GalleryFinalCta";
 import { GalleryHero } from "@/components/gallery/GalleryHero";
 import { GalleryPhotoHighlights } from "@/components/gallery/GalleryPhotoHighlights";
 import { GalleryPromotionSection } from "@/components/gallery/GalleryPromotionSection";
@@ -23,6 +24,8 @@ export default function GalleryPage() {
       <GalleryClientProof />
 
       <SiteContactSection />
+
+      <GalleryFinalCta />
     </>
   );
 }
