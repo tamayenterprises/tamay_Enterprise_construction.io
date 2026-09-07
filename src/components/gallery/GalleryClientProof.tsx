@@ -48,78 +48,6 @@ function GoogleIcon({ className = "w-4 h-4" }: { className?: string }) {
   );
 }
 
-function FamilyIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className={`shrink-0 text-tamay-accent ${className}`}
-      aria-hidden
-    >
-      <circle cx="7" cy="7" r="2.2" />
-      <circle cx="13.5" cy="7.8" r="1.8" />
-      <path d="M3.5 16.5c.6-2.2 2-3.5 3.5-3.5s2.9 1.3 3.5 3.5M11 16.5c.4-1.6 1.4-2.7 2.5-2.7s2.1 1.1 2.5 2.7" />
-    </svg>
-  );
-}
-
-function ShieldIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className={`shrink-0 text-tamay-accent ${className}`}
-      aria-hidden
-    >
-      <path d="M10 2.5 4 5v5c0 3.5 2.6 6.4 6 7 3.4-.6 6-3.5 6-7V5l-6-2.5Z" />
-      <path d="M7.5 10.2 9.2 12 12.8 8.4" />
-    </svg>
-  );
-}
-
-function MapPinIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className={`shrink-0 text-tamay-accent ${className}`}
-      aria-hidden
-    >
-      <path d="M10 17s5-4.2 5-8a5 5 0 1 0-10 0c0 3.8 5 8 5 8Z" />
-      <circle cx="10" cy="9" r="1.6" />
-    </svg>
-  );
-}
-
-function CraftIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className={`shrink-0 text-tamay-accent ${className}`}
-      aria-hidden
-    >
-      <path d="M4 15.5 8.5 4.5h3L16 15.5" />
-      <path d="M6.2 12h7.6" />
-    </svg>
-  );
-}
-
-const TRUST_ITEMS = [
-  { icon: FamilyIcon, title: "Family Owned", support: "Built on trust." },
-  { icon: ShieldIcon, title: "Fully Insured", support: "Your project, protected." },
-  { icon: MapPinIcon, title: "Serving Connecticut", support: "Our home. Our community." },
-  { icon: CraftIcon, title: "Quality-Focused Workmanship", support: "Results that last." },
-] as const;
-
 function thumbCandidates(id: string) {
   return [
     `https://i.ytimg.com/vi/${id}/hq720.jpg`,
@@ -304,23 +232,6 @@ export function GalleryClientProof() {
           <Link href={sitePath("/reviews")} className={`${constructionPrimaryLinkClass} w-full sm:w-auto text-center`}>
             See More Client Reviews
           </Link>
-        </div>
-
-        {/* Trust strip */}
-        <div className="mt-10 sm:mt-12 pt-8 border-t border-[#c9a227]/25">
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 lg:gap-4">
-            {TRUST_ITEMS.map((item) => (
-              <li key={item.title} className="flex items-start gap-3 lg:flex-col lg:items-center lg:text-center lg:gap-2">
-                <item.icon className="h-5 w-5 mt-0.5 lg:mt-0" />
-                <div>
-                  <p className="font-heading text-[11px] sm:text-xs font-bold tracking-[0.12em] uppercase" style={{ color: NAVY }}>
-                    {item.title}
-                  </p>
-                  <p className="mt-1 text-[12px] sm:text-[13px] text-gray-500 leading-snug">{item.support}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
 
