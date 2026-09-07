@@ -89,3 +89,34 @@ export const GALLERY_VIDEO_PROJECTS: ReviewVideoProject[] = [
     videos: ["EXIut76IUDU", "hg34-f2Qfok"],
   },
 ];
+
+/** Commercial project IDs within GALLERY_VIDEO_PROJECTS (rest are Residential). */
+const GALLERY_COMMERCIAL_PROJECT_IDS = new Set(["ada-bathroom-construction"]);
+
+export type GalleryVideoCategory = "Residential" | "Commercial";
+
+export type GalleryShowcaseVideo = {
+  id: string;
+  youtubeId: string;
+  title: string;
+  category: GalleryVideoCategory;
+  /** Optional clip label when a project has multiple videos */
+  partLabel?: string;
+};
+
+/** Flattened showcase entries for the Gallery video-first section. */
+export const GALLERY_SHOWCASE_VIDEOS: GalleryShowcaseVideo[] = GALLERY_VIDEO_PROJECTS.flatMap(
+  (project) => {
+    const category: GalleryVideoCategory = GALLERY_COMMERCIAL_PROJECT_IDS.has(project.id)
+      ? "Commercial"
+      : "Residential";
+    const title = project.title ?? "Project Video";
+    return project.videos.map((youtubeId, index) => ({
+      id: `${project.id}-${index}`,
+      youtubeId,
+      title,
+      category,
+      partLabel: project.videos.length > 1 ? `Part ${index + 1}` : undefined,
+    }));
+  },
+);
