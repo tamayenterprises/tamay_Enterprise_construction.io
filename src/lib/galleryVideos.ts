@@ -90,33 +90,104 @@ export const GALLERY_VIDEO_PROJECTS: ReviewVideoProject[] = [
   },
 ];
 
-/** Commercial project IDs within GALLERY_VIDEO_PROJECTS (rest are Residential). */
-const GALLERY_COMMERCIAL_PROJECT_IDS = new Set(["ada-bathroom-construction"]);
+/**
+ * Gallery Project Stories categories.
+ * Commercial is reserved for genuine non-residential work only.
+ */
+export type GalleryVideoCategory =
+  | "Whole-Home & Interior"
+  | "Bathrooms"
+  | "Exterior & Property"
+  | "Specialty & Systems"
+  | "Commercial";
 
-export type GalleryVideoCategory = "Residential" | "Commercial";
+export const GALLERY_VIDEO_FILTERS = [
+  "All",
+  "Whole-Home & Interior",
+  "Bathrooms",
+  "Exterior & Property",
+  "Specialty & Systems",
+  "Commercial",
+] as const;
+
+export type GalleryVideoFilter = (typeof GALLERY_VIDEO_FILTERS)[number];
+
+/** Explicit project → category map (every GALLERY_VIDEO_PROJECTS id must appear). */
+export const GALLERY_PROJECT_CATEGORY: Record<string, GalleryVideoCategory> = {
+  "complete-basement-renovation": "Whole-Home & Interior",
+  "full-basement-transformation": "Whole-Home & Interior",
+  "garage-restore-paint-west-haven": "Whole-Home & Interior",
+  "custom-closet-monroe": "Whole-Home & Interior",
+  "apartment-relayout-new-haven": "Whole-Home & Interior",
+  "coop-apartment-renovation": "Whole-Home & Interior",
+  "full-bathroom-renovation": "Bathrooms",
+  "bathroom-renovation-wilton": "Bathrooms",
+  "bathroom-remodel": "Bathrooms",
+  // Genuine commercial ADA build-out (not a residential bath remodel)
+  "ada-bathroom-construction": "Commercial",
+  "retaining-wall": "Exterior & Property",
+  "home-exterior-upgrade-fairfield": "Exterior & Property",
+  "vinyl-fences-west-haven": "Exterior & Property",
+  "full-home-lighting": "Specialty & Systems",
+};
+
+/**
+ * Preferred featured clip id (`${projectId}-${index}`) per filter.
+ * Ensures category switches spotlight a strong video for that set.
+ */
+export const GALLERY_FEATURED_BY_FILTER: Record<GalleryVideoFilter, string> = {
+  All: "complete-basement-renovation-0",
+  "Whole-Home & Interior": "complete-basement-renovation-0",
+  Bathrooms: "full-bathroom-renovation-0",
+  "Exterior & Property": "home-exterior-upgrade-fairfield-0",
+  "Specialty & Systems": "full-home-lighting-0",
+  Commercial: "ada-bathroom-construction-0",
+};
 
 export type GalleryShowcaseVideo = {
   id: string;
   youtubeId: string;
   title: string;
   category: GalleryVideoCategory;
+  projectId: string;
   /** Optional clip label when a project has multiple videos */
   partLabel?: string;
 };
 
-/** Flattened showcase entries for the Gallery video-first section. */
+function categoryForProject(projectId: string): GalleryVideoCategory {
+  const mapped = GALLERY_PROJECT_CATEGORY[projectId];
+  if (!mapped) {
+    throw new Error(`Gallery project missing category map: ${projectId}`);
+  }
+  return mapped;
+}
+
+/** Flattened showcase entries — one entry per YouTube ID, no drops. */
 export const GALLERY_SHOWCASE_VIDEOS: GalleryShowcaseVideo[] = GALLERY_VIDEO_PROJECTS.flatMap(
   (project) => {
-    const category: GalleryVideoCategory = GALLERY_COMMERCIAL_PROJECT_IDS.has(project.id)
-      ? "Commercial"
-      : "Residential";
+    const category = categoryForProject(project.id);
     const title = project.title ?? "Project Video";
     return project.videos.map((youtubeId, index) => ({
       id: `${project.id}-${index}`,
       youtubeId,
       title,
       category,
+      projectId: project.id,
       partLabel: project.videos.length > 1 ? `Part ${index + 1}` : undefined,
     }));
   },
 );
+
+/** Sort filtered list so the preferred featured clip is first. */
+export function orderGalleryVideosForFilter(
+  videos: readonly GalleryShowcaseVideo[],
+  filter: GalleryVideoFilter,
+): GalleryShowcaseVideo[] {
+  const featuredId = GALLERY_FEATURED_BY_FILTER[filter];
+  const list =
+    filter === "All" ? [...videos] : videos.filter((v) => v.category === filter);
+  const featuredIndex = list.findIndex((v) => v.id === featuredId);
+  if (featuredIndex <= 0) return list;
+  const [featured] = list.splice(featuredIndex, 1);
+  return [featured!, ...list];
+}

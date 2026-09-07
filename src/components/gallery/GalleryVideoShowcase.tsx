@@ -6,8 +6,10 @@ import { StaffPhotoEditor } from "@/components/images/StaffPhotoEditor";
 import { useResolvedSiteMedia } from "@/components/images/SiteImagesProvider";
 import {
   GALLERY_SHOWCASE_VIDEOS,
+  GALLERY_VIDEO_FILTERS,
+  orderGalleryVideosForFilter,
   type GalleryShowcaseVideo,
-  type GalleryVideoCategory,
+  type GalleryVideoFilter,
 } from "@/lib/galleryVideos";
 import { mediaSrc } from "@/lib/siteImages";
 import "@/components/reviews/tamay-video-gallery.css";
@@ -15,8 +17,6 @@ import "@/components/reviews/tamay-video-gallery.css";
 const NAVY = "#141c2b";
 const INITIAL_VISIBLE = 6;
 const LOAD_MORE_STEP = 6;
-
-type FilterKey = "All" | GalleryVideoCategory;
 
 type PhotoItem = {
   title: string;
@@ -95,7 +95,7 @@ function VideoCard({
     >
       <VideoThumb youtubeId={video.youtubeId} />
       <span className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent" aria-hidden />
-      <span className="absolute left-3 top-3 inline-flex rounded-full border border-white/25 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+      <span className="absolute left-3 top-3 inline-flex max-w-[calc(100%-1.5rem)] rounded-full border border-white/25 bg-black/35 px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.1em] text-white backdrop-blur-sm truncate">
         {video.category}
       </span>
       <span className="absolute inset-0 flex items-center justify-center">
@@ -179,14 +179,14 @@ function PhotoStrip({ photos }: { photos: readonly PhotoItem[] }) {
  */
 export function GalleryVideoShowcase({ photos }: GalleryVideoShowcaseProps) {
   const reactId = useId();
-  const [filter, setFilter] = useState<FilterKey>("All");
+  const [filter, setFilter] = useState<GalleryVideoFilter>("All");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  const filtered = useMemo(() => {
-    if (filter === "All") return GALLERY_SHOWCASE_VIDEOS;
-    return GALLERY_SHOWCASE_VIDEOS.filter((v) => v.category === filter);
-  }, [filter]);
+  const filtered = useMemo(
+    () => orderGalleryVideosForFilter(GALLERY_SHOWCASE_VIDEOS, filter),
+    [filter],
+  );
 
   const featured = filtered[0] ?? null;
   const supporting = filtered.slice(1);
@@ -215,8 +215,6 @@ export function GalleryVideoShowcase({ photos }: GalleryVideoShowcaseProps) {
     };
   }, [activeId, close]);
 
-  const filters: FilterKey[] = ["All", "Residential", "Commercial"];
-
   return (
     <section
       id="featured-projects"
@@ -243,13 +241,13 @@ export function GalleryVideoShowcase({ photos }: GalleryVideoShowcaseProps) {
           </p>
         </div>
 
-        {/* Filters */}
+        {/* Filters — horizontal scroll on narrow viewports; wrap on larger */}
         <div
-          className="mt-7 sm:mt-8 flex flex-wrap gap-2"
+          className="mt-7 sm:mt-8 -mx-4 px-4 sm:mx-0 sm:px-0 flex gap-2 overflow-x-auto scrollbar-hide sm:flex-wrap sm:overflow-visible pb-1"
           role="tablist"
           aria-label="Filter project videos"
         >
-          {filters.map((key) => {
+          {GALLERY_VIDEO_FILTERS.map((key) => {
             const active = filter === key;
             return (
               <button
@@ -258,7 +256,7 @@ export function GalleryVideoShowcase({ photos }: GalleryVideoShowcaseProps) {
                 role="tab"
                 aria-selected={active}
                 onClick={() => setFilter(key)}
-                className={`min-h-10 px-4 py-2 font-heading text-[11px] sm:text-xs font-bold tracking-[0.14em] uppercase transition-colors ${
+                className={`shrink-0 min-h-10 px-3.5 sm:px-4 py-2 font-heading text-[10px] sm:text-[11px] font-bold tracking-[0.12em] uppercase transition-colors whitespace-nowrap ${
                   active
                     ? "bg-[#141c2b] text-white"
                     : "bg-white text-[#141c2b]/75 ring-1 ring-black/10 hover:text-[#141c2b]"
