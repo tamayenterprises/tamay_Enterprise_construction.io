@@ -1,9 +1,6 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useId, useMemo, useState } from "react";
-import { StaffPhotoEditor } from "@/components/images/StaffPhotoEditor";
-import { useResolvedSiteMedia } from "@/components/images/SiteImagesProvider";
 import {
   GALLERY_SHOWCASE_VIDEOS,
   GALLERY_VIDEO_FILTERS,
@@ -11,22 +8,11 @@ import {
   type GalleryShowcaseVideo,
   type GalleryVideoFilter,
 } from "@/lib/galleryVideos";
-import { mediaSrc } from "@/lib/siteImages";
 import "@/components/reviews/tamay-video-gallery.css";
 
 const NAVY = "#141c2b";
 const INITIAL_VISIBLE = 6;
 const LOAD_MORE_STEP = 6;
-
-type PhotoItem = {
-  title: string;
-  src: string;
-  slotKey?: string;
-};
-
-type GalleryVideoShowcaseProps = {
-  photos: readonly PhotoItem[];
-};
 
 function thumbCandidates(id: string) {
   return [
@@ -117,67 +103,11 @@ function VideoCard({
   );
 }
 
-function PhotoStrip({ photos }: { photos: readonly PhotoItem[] }) {
-  const media = useResolvedSiteMedia();
-
-  if (photos.length === 0) return null;
-
-  return (
-    <div className="mt-14 sm:mt-16 lg:mt-20 pt-10 sm:pt-12 border-t border-[#c9a227]/20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <p className="font-heading text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase text-tamay-accent">
-          Project Photos
-        </p>
-        <div className="mt-2 h-px w-10 bg-tamay-accent/70" aria-hidden />
-        <h3 className="mt-3 font-heading text-xl sm:text-2xl font-semibold leading-snug" style={{ color: NAVY }}>
-          Additional project photos
-        </h3>
-        <p className="mt-2 text-sm text-gray-600 leading-relaxed max-w-xl">
-          A lighter look at selected finished work — scroll to browse.
-        </p>
-      </div>
-
-      <div
-        className="mt-6 sm:mt-7 flex gap-3 sm:gap-3.5 overflow-x-auto px-4 sm:px-6 pb-2 scrollbar-hide snap-x snap-mandatory"
-        aria-label="Project photo strip"
-      >
-        {photos.map((photo, index) => {
-          const src = photo.slotKey ? mediaSrc(media, photo.slotKey) : photo.src;
-          const image = (
-            <Image
-              src={src}
-              alt={photo.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              sizes="(max-width: 640px) 70vw, 280px"
-              unoptimized
-            />
-          );
-
-          return (
-            <figure
-              key={photo.slotKey ?? `${photo.src}-${index}`}
-              className="group relative h-40 w-[70vw] max-w-[280px] sm:h-44 sm:w-[260px] shrink-0 overflow-hidden rounded-xl bg-[#f3f1ed] ring-1 ring-black/[0.04] snap-start shadow-[0_6px_18px_rgba(20,28,43,0.06)]"
-            >
-              {photo.slotKey ? <StaffPhotoEditor slot={photo.slotKey}>{image}</StaffPhotoEditor> : image}
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/55 to-transparent px-3 py-2.5">
-                <p className="font-heading text-[11px] sm:text-xs font-semibold text-white leading-snug line-clamp-2">
-                  {photo.title}
-                </p>
-              </figcaption>
-            </figure>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 /**
- * Video-first Gallery showcase — featured spotlight, filters, grid, load more, photo strip.
- * Keeps Hero / Promotion untouched; replaces the former photo+video gallery blocks.
+ * Video-first Gallery showcase — featured spotlight, filters, grid, load more.
+ * Photo Highlights live in GalleryPhotoHighlights (separate section).
  */
-export function GalleryVideoShowcase({ photos }: GalleryVideoShowcaseProps) {
+export function GalleryVideoShowcase() {
   const reactId = useId();
   const [filter, setFilter] = useState<GalleryVideoFilter>("All");
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
@@ -300,8 +230,6 @@ export function GalleryVideoShowcase({ photos }: GalleryVideoShowcaseProps) {
           <p className="mt-10 text-sm text-gray-600">No videos in this category yet.</p>
         )}
       </div>
-
-      <PhotoStrip photos={photos} />
 
       <div className="h-10 sm:h-12 lg:h-14" aria-hidden />
 
