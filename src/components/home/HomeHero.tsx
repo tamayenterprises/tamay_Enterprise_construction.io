@@ -3,11 +3,11 @@ import Link from "next/link";
 import { sitePath } from "@/lib/paths";
 
 const NAVY = "#0b1628";
-const GOLD = "#c9a227";
 
-const TEAM_SRC = "/homepage/hero/hero-main-team.jpg";
-const REAL_ESTATE_SRC = "/homepage/hero/hero-real-estate.jpg";
-const LOGISTICS_SRC = "/homepage/hero/hero-logistics.jpg";
+/** Fresh approved uploads — no overlays on the photography itself */
+const TEAM_SRC = "/homepage/hero/hero-team-clean.jpg";
+const REAL_ESTATE_SRC = "/homepage/hero/hero-real-estate-clean.jpg";
+const LOGISTICS_SRC = "/homepage/hero/hero-logistics-clean.jpg";
 
 const PILLARS = [
   {
@@ -74,29 +74,15 @@ function PillarIcon({ type }: { type: (typeof PILLARS)[number]["icon"] }) {
   );
 }
 
-/** Tiny bottom scrim for caption contrast only — does not wash the photo. */
-function CaptionScrim() {
-  return (
-    <div
-      className="absolute inset-x-0 bottom-0 h-[28%] pointer-events-none"
-      aria-hidden
-      style={{
-        background: "linear-gradient(to top, rgba(8,14,26,0.55) 0%, rgba(8,14,26,0.18) 55%, transparent 100%)",
-      }}
-    />
-  );
-}
-
 /**
- * Home landing Hero — clean approved photography first.
- * Exact approved assets; minimal caption scrims; no dark washes over people/van/home.
+ * Home Hero — approved photography shown clean (no dark washes / ghost layers).
+ * Captions sit BELOW images so the photos stay fully visible.
  */
 export function HomeHero() {
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: NAVY }} aria-labelledby="home-hero-heading">
       {/* ========== DESKTOP / TABLET ========== */}
       <div className="hidden md:grid md:grid-cols-[minmax(0,0.43fr)_minmax(0,0.57fr)] gap-4 lg:gap-5 xl:gap-6 max-w-[1480px] mx-auto pl-6 lg:pl-10 xl:pl-12 pr-4 lg:pr-6 xl:pr-8 pt-8 lg:pt-10 pb-6 lg:pb-7 items-stretch">
-        {/* LEFT — content */}
         <div className="relative z-10 flex flex-col min-w-0 pr-1 pt-1">
           <div className="flex items-center gap-3">
             <p className="font-heading text-[11px] lg:text-xs font-semibold tracking-[0.28em] uppercase text-tamay-accent">
@@ -165,79 +151,66 @@ export function HomeHero() {
           </div>
         </div>
 
-        {/* RIGHT — expanded visual plane: team + clean RE | Logistics */}
+        {/* RIGHT — clean photography only; captions under (not over) images */}
         <div className="relative min-w-0 grid grid-cols-[minmax(0,1fr)_2.75rem] xl:grid-cols-[minmax(0,1fr)_3.25rem] gap-1.5 items-stretch">
-          <div className="min-w-0 grid grid-rows-[minmax(300px,1.7fr)_minmax(200px,1fr)] gap-1.5 lg:gap-2 h-full">
-            {/* Main team — bright, unwashed, full people + plans */}
-            <div className="relative overflow-hidden min-h-[300px] lg:min-h-[340px] xl:min-h-[380px]">
+          <div className="min-w-0 flex flex-col gap-1.5 lg:gap-2 h-full">
+            <div className="relative overflow-hidden flex-1 min-h-[320px] lg:min-h-[360px] xl:min-h-[400px]">
               <Image
                 src={TEAM_SRC}
                 alt="Tamay Enterprises team reviewing project plans together in a premium home"
                 fill
-                className="object-cover object-[center_38%]"
+                className="object-cover object-[center_40%]"
                 sizes="(max-width: 1024px) 58vw, 52vw"
                 priority
               />
             </div>
 
-            {/* Lower row: one RE + one Logistics, no overlap, no dark wash */}
-            <div className="grid grid-cols-2 gap-1.5 lg:gap-2 min-h-[200px] lg:min-h-[220px]">
-              <div className="relative overflow-hidden">
-                <Image
-                  src={REAL_ESTATE_SRC}
-                  alt="Premium modern home at blue hour representing Tamay Real Estate"
-                  fill
-                  className="object-cover object-[center_center]"
-                  sizes="(max-width: 1024px) 30vw, 26vw"
-                />
-                <CaptionScrim />
-                <div className="absolute inset-x-0 bottom-0 p-3 lg:p-3.5">
-                  <p
-                    className="font-heading text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase text-tamay-accent"
-                    style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}
-                  >
+            <div className="grid grid-cols-2 gap-1.5 lg:gap-2">
+              <figure className="m-0 min-w-0">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={REAL_ESTATE_SRC}
+                    alt="Premium modern home at blue hour representing Tamay Real Estate"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 30vw, 26vw"
+                  />
+                </div>
+                <figcaption className="pt-2 pb-0.5">
+                  <p className="font-heading text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase text-tamay-accent">
                     Real Estate
                   </p>
-                  <p
-                    className="mt-1 text-[10px] lg:text-[11px] font-medium tracking-[0.1em] uppercase text-white leading-snug"
-                    style={{ textShadow: "0 1px 3px rgba(0,0,0,0.55)" }}
-                  >
+                  <p className="mt-0.5 text-[10px] lg:text-[11px] font-medium tracking-[0.1em] uppercase text-white/90 leading-snug">
                     Properties for
                     <br />A Brighter Tomorrow
                   </p>
-                </div>
-              </div>
+                </figcaption>
+              </figure>
 
-              <div className="relative overflow-hidden">
-                <Image
-                  src={LOGISTICS_SRC}
-                  alt="Tamay-branded logistics van and team member with delivery materials"
-                  fill
-                  className="object-cover object-[42%_center]"
-                  sizes="(max-width: 1024px) 30vw, 26vw"
-                />
-                <CaptionScrim />
-                <div className="absolute inset-x-0 bottom-0 p-3 lg:p-3.5">
-                  <p
-                    className="font-heading text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase text-tamay-accent"
-                    style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}
-                  >
+              <figure className="m-0 min-w-0">
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <Image
+                    src={LOGISTICS_SRC}
+                    alt="Tamay-branded logistics van and team member with delivery materials"
+                    fill
+                    className="object-cover object-[40%_center]"
+                    sizes="(max-width: 1024px) 30vw, 26vw"
+                  />
+                </div>
+                <figcaption className="pt-2 pb-0.5">
+                  <p className="font-heading text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase text-tamay-accent">
                     Logistics
                   </p>
-                  <p
-                    className="mt-1 text-[10px] lg:text-[11px] font-medium tracking-[0.1em] uppercase text-white leading-snug"
-                    style={{ textShadow: "0 1px 3px rgba(0,0,0,0.55)" }}
-                  >
+                  <p className="mt-0.5 text-[10px] lg:text-[11px] font-medium tracking-[0.1em] uppercase text-white/90 leading-snug">
                     Delivering Progress
                     <br />
                     Every Step of the Way
                   </p>
-                </div>
-              </div>
+                </figcaption>
+              </figure>
             </div>
           </div>
 
-          {/* Dedicated decorative strip — outside photography, not over faces */}
           <div
             className="hidden lg:flex flex-col justify-start items-center gap-1.5 pt-3 pointer-events-none"
             aria-hidden
@@ -254,7 +227,7 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* ========== MOBILE — clean images first ========== */}
+      {/* ========== MOBILE ========== */}
       <div className="md:hidden px-4 pt-8 pb-8">
         <div className="flex items-center gap-3">
           <p className="font-heading text-[10px] font-semibold tracking-[0.28em] uppercase text-tamay-accent">
@@ -295,7 +268,7 @@ export function HomeHero() {
             src={TEAM_SRC}
             alt="Tamay Enterprises team reviewing project plans together in a premium home"
             fill
-            className="object-cover object-[center_38%]"
+            className="object-cover object-[center_40%]"
             sizes="100vw"
             priority
           />
@@ -320,56 +293,46 @@ export function HomeHero() {
           ))}
         </ul>
 
-        <div className="mt-4 space-y-2.5">
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <Image
-              src={REAL_ESTATE_SRC}
-              alt="Premium modern home at blue hour representing Tamay Real Estate"
-              fill
-              className="object-cover object-center"
-              sizes="100vw"
-            />
-            <CaptionScrim />
-            <div className="absolute inset-x-0 bottom-0 p-3.5">
-              <p
-                className="font-heading text-[11px] font-bold tracking-[0.16em] uppercase text-tamay-accent"
-                style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}
-              >
+        <div className="mt-4 space-y-4">
+          <figure className="m-0">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <Image
+                src={REAL_ESTATE_SRC}
+                alt="Premium modern home at blue hour representing Tamay Real Estate"
+                fill
+                className="object-cover object-center"
+                sizes="100vw"
+              />
+            </div>
+            <figcaption className="pt-2">
+              <p className="font-heading text-[11px] font-bold tracking-[0.16em] uppercase text-tamay-accent">
                 Real Estate
               </p>
-              <p
-                className="mt-1 text-[10px] font-medium tracking-[0.08em] uppercase text-white"
-                style={{ textShadow: "0 1px 3px rgba(0,0,0,0.55)" }}
-              >
+              <p className="mt-0.5 text-[10px] font-medium tracking-[0.08em] uppercase text-white/90">
                 Properties for a Brighter Tomorrow
               </p>
-            </div>
-          </div>
+            </figcaption>
+          </figure>
 
-          <div className="relative aspect-[16/10] overflow-hidden">
-            <Image
-              src={LOGISTICS_SRC}
-              alt="Tamay-branded logistics van and team member with delivery materials"
-              fill
-              className="object-cover object-[40%_center]"
-              sizes="100vw"
-            />
-            <CaptionScrim />
-            <div className="absolute inset-x-0 bottom-0 p-3.5">
-              <p
-                className="font-heading text-[11px] font-bold tracking-[0.16em] uppercase text-tamay-accent"
-                style={{ textShadow: "0 1px 2px rgba(0,0,0,0.45)" }}
-              >
+          <figure className="m-0">
+            <div className="relative aspect-[16/10] overflow-hidden">
+              <Image
+                src={LOGISTICS_SRC}
+                alt="Tamay-branded logistics van and team member with delivery materials"
+                fill
+                className="object-cover object-[40%_center]"
+                sizes="100vw"
+              />
+            </div>
+            <figcaption className="pt-2">
+              <p className="font-heading text-[11px] font-bold tracking-[0.16em] uppercase text-tamay-accent">
                 Logistics
               </p>
-              <p
-                className="mt-1 text-[10px] font-medium tracking-[0.08em] uppercase text-white"
-                style={{ textShadow: "0 1px 3px rgba(0,0,0,0.55)" }}
-              >
+              <p className="mt-0.5 text-[10px] font-medium tracking-[0.08em] uppercase text-white/90">
                 Delivering Progress Every Step of the Way
               </p>
-            </div>
-          </div>
+            </figcaption>
+          </figure>
         </div>
 
         <div className="mt-6 flex items-center justify-center gap-3">
