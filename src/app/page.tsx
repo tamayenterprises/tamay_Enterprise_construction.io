@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { HeroVideoBanner } from "@/components/ui/HeroVideoBanner";
 import { AboutUsSection } from "@/components/about/AboutUsSection";
 import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { EstimatePromoSection } from "@/components/home/EstimatePromoSection";
 import { FinancingBanner } from "@/components/home/FinancingBanner";
+import { HomeHero } from "@/components/home/HomeHero";
 import { HomeImageShowcase } from "@/components/home/HomeImageShowcase";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { DivisionCard } from "@/components/ui/DivisionCard";
-import { SERVICE_AREAS, SITE } from "@/lib/site";
+import { SERVICE_AREAS } from "@/lib/site";
 import { getResolvedSiteMedia } from "@/lib/siteImages";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 import { SiteText } from "@/components/copy/SiteText";
@@ -21,7 +21,7 @@ export default async function HomePage() {
   const { images } = await getResolvedSiteMedia();
   return (
     <>
-      <HeroVideoBanner withMessage tagline={SITE.tagline} />
+      <HomeHero />
 
       <AboutUsSection />
 
