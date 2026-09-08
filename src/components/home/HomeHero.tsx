@@ -94,7 +94,7 @@ export function HomeHero() {
   return (
     <section className="relative overflow-hidden" style={{ backgroundColor: NAVY }} aria-labelledby="home-hero-heading">
       {/* ========== DESKTOP / TABLET ========== */}
-      <div className="hidden md:grid md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] gap-3 lg:gap-4 xl:gap-5 max-w-[1600px] mx-auto pl-5 lg:pl-8 xl:pl-10 pr-3 lg:pr-4 xl:pr-5 pt-7 lg:pt-8 pb-5 lg:pb-6 items-start">
+      <div className="hidden md:grid md:grid-cols-2 gap-4 lg:gap-5 xl:gap-6 max-w-[1600px] mx-auto pl-5 lg:pl-8 xl:pl-10 pr-4 lg:pr-5 xl:pr-6 pt-7 lg:pt-8 pb-5 lg:pb-6 items-start">
         {/* LEFT — compact vertical rhythm (no mt-auto stretch) */}
         <div className="relative z-10 flex flex-col min-w-0 pr-0 lg:pr-1 pt-0.5">
           <div className="flex items-center gap-3">
