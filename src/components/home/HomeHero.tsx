@@ -30,7 +30,13 @@ const PILLARS = [
   },
 ] as const;
 
-function PillarIcon({ type, className = "h-6 w-6 lg:h-7 lg:w-7 text-tamay-accent" }: { type: (typeof PILLARS)[number]["icon"]; className?: string }) {
+function PillarIcon({
+  type,
+  className = "h-6 w-6 text-tamay-accent shrink-0",
+}: {
+  type: (typeof PILLARS)[number]["icon"];
+  className?: string;
+}) {
   if (type === "home") {
     return (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -76,81 +82,75 @@ function PillarIcon({ type, className = "h-6 w-6 lg:h-7 lg:w-7 text-tamay-accent
 function CaptionScrim() {
   return (
     <div
-      className="pointer-events-none absolute inset-x-0 bottom-0 h-[30%]"
+      className="pointer-events-none absolute inset-x-0 bottom-0 h-[36%]"
       aria-hidden
       style={{
-        background: "linear-gradient(to top, rgba(8,14,26,0.55) 0%, rgba(8,14,26,0.16) 60%, transparent 100%)",
+        background: "linear-gradient(to top, rgba(8,14,26,0.58) 0%, rgba(8,14,26,0.15) 65%, transparent 100%)",
       }}
     />
   );
 }
 
 /**
- * Home Hero — premium desktop editorial composition + intentional shorter mobile flow.
+ * Home Hero — message-first editorial composition (approved desktop + mobile).
  * Locked approved photography assets.
  */
 export function HomeHero() {
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ backgroundColor: NAVY }}
-      aria-labelledby="home-hero-heading"
-    >
-      {/* Premium navy depth — subtle radial + faint blueprint lines */}
+    <section className="relative overflow-hidden" style={{ backgroundColor: NAVY }} aria-labelledby="home-hero-heading">
+      {/* Subtle navy depth */}
       <div
         className="pointer-events-none absolute inset-0"
         aria-hidden
         style={{
           background: `
-            radial-gradient(90% 70% at 18% 28%, rgba(53,85,143,0.22) 0%, transparent 55%),
-            radial-gradient(70% 55% at 88% 72%, rgba(201,162,39,0.06) 0%, transparent 50%),
-            linear-gradient(165deg, #0d1a30 0%, #0b1628 42%, #091321 100%)
+            radial-gradient(80% 60% at 16% 30%, rgba(53,85,143,0.18) 0%, transparent 55%),
+            linear-gradient(165deg, #0d1a30 0%, #0b1628 45%, #091321 100%)
           `,
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.045]"
+        className="pointer-events-none absolute inset-0 opacity-[0.035]"
         aria-hidden
         style={{
           backgroundImage: `
-            linear-gradient(rgba(201,162,39,0.55) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(201,162,39,0.55) 1px, transparent 1px)
+            linear-gradient(rgba(201,162,39,0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(201,162,39,0.5) 1px, transparent 1px)
           `,
-          backgroundSize: "48px 48px",
-          maskImage: "linear-gradient(105deg, black 0%, black 38%, transparent 62%)",
-          WebkitMaskImage: "linear-gradient(105deg, black 0%, black 38%, transparent 62%)",
+          backgroundSize: "52px 52px",
+          maskImage: "linear-gradient(100deg, black 0%, black 42%, transparent 68%)",
+          WebkitMaskImage: "linear-gradient(100deg, black 0%, black 42%, transparent 68%)",
         }}
       />
 
-      {/* ========== DESKTOP / TABLET (≥ md) ========== */}
-      <div className="relative hidden md:grid md:grid-cols-[minmax(0,0.42fr)_minmax(0,0.58fr)] lg:grid-cols-[minmax(0,0.40fr)_minmax(0,0.60fr)] gap-3 lg:gap-4 xl:gap-5 max-w-[1600px] mx-auto pl-5 lg:pl-8 xl:pl-10 pr-3 lg:pr-4 xl:pr-5 pt-7 lg:pt-9 pb-5 lg:pb-6 items-start">
-        {/* LEFT content */}
-        <div className="relative z-10 flex flex-col min-w-0 pt-0.5">
+      {/* ========== DESKTOP / TABLET ========== */}
+      <div className="relative hidden md:grid md:grid-cols-[minmax(0,0.47fr)_minmax(0,0.53fr)] gap-5 lg:gap-6 xl:gap-8 max-w-[1400px] mx-auto px-6 lg:px-10 xl:px-12 pt-8 lg:pt-10 pb-7 lg:pb-8 items-start">
+        {/* LEFT — message is the Hero (~46–48%) */}
+        <div className="relative z-10 flex flex-col min-w-0 overflow-hidden pr-1 lg:pr-2">
           <div className="flex items-center gap-3">
-            <p className="font-heading text-[11px] lg:text-xs font-semibold tracking-[0.3em] uppercase text-tamay-accent">
+            <p className="font-heading text-[11px] lg:text-xs font-semibold tracking-[0.28em] uppercase text-tamay-accent">
               Tamay Enterprises
             </p>
-            <span className="h-px w-12 lg:w-16 bg-tamay-accent/80" aria-hidden />
+            <span className="h-px w-11 lg:w-14 bg-tamay-accent/80" aria-hidden />
           </div>
 
           <h1
             id="home-hero-heading"
-            className="mt-4 lg:mt-5 font-heading normal-case text-[2.95rem] lg:text-[3.55rem] xl:text-[4rem] font-normal leading-[1.05] tracking-normal"
+            className="mt-4 lg:mt-5 font-heading normal-case text-[2.45rem] lg:text-[2.95rem] xl:text-[3.25rem] font-normal leading-[1.1] tracking-normal max-w-full"
           >
-            <span className="text-white">One Company.</span>
-            <br />
-            <span className="text-tamay-accent whitespace-nowrap">Complete Solutions.</span>
+            <span className="block text-white">One Company.</span>
+            <span className="block text-tamay-accent">Complete Solutions.</span>
           </h1>
 
-          <p className="mt-4 lg:mt-5 text-[15px] lg:text-[17px] xl:text-lg text-white/90 leading-[1.72] max-w-[25rem] lg:max-w-[27rem]">
+          <p className="mt-4 text-[14px] lg:text-[15px] xl:text-base text-white/88 leading-[1.7] max-w-[26rem]">
             Real Estate, Construction, and Logistics — coordinated to help you buy, build, improve, and move forward
             with confidence.
           </p>
 
-          <div className="mt-6 lg:mt-7 flex flex-row flex-wrap gap-3">
+          <div className="mt-5 lg:mt-6 flex flex-row flex-wrap gap-2.5 lg:gap-3">
             <Link
               href="#our-services"
-              className="group/cta inline-flex items-center justify-center gap-2 h-[3.15rem] px-7 font-semibold text-[15px] tracking-wide bg-tamay-accent hover:bg-tamay-accent-hover text-[#0b1628] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
+              className="group/cta inline-flex items-center justify-center gap-2 h-11 px-5 lg:px-6 font-semibold text-sm tracking-wide bg-tamay-accent hover:bg-tamay-accent-hover text-[#0b1628] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
             >
               Explore Our Services
               <span
@@ -162,32 +162,29 @@ export function HomeHero() {
             </Link>
             <Link
               href={sitePath("/online-appointments")}
-              className="inline-flex items-center justify-center h-[3.15rem] px-7 font-semibold text-[15px] tracking-wide border border-white/80 text-white hover:border-tamay-accent/70 hover:bg-white/[0.05] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              className="inline-flex items-center justify-center h-11 px-5 lg:px-6 font-semibold text-sm tracking-wide border border-white/75 text-white hover:border-tamay-accent/60 hover:bg-white/[0.05] transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
               Book a Consultation
             </Link>
           </div>
 
-          <ul className="mt-7 lg:mt-8 flex items-start list-none m-0 p-0">
+          <ul className="mt-6 lg:mt-7 flex items-start list-none m-0 p-0">
             {PILLARS.map((pillar, index) => (
               <li
                 key={pillar.label}
                 className={`min-w-0 flex-1 ${
-                  index > 0 ? "border-l border-tamay-accent/40 pl-3.5 lg:pl-5" : "pr-3.5 lg:pr-5"
+                  index > 0 ? "border-l border-tamay-accent/35 pl-3 lg:pl-4" : "pr-3 lg:pr-4"
                 }`}
               >
                 <Link
                   href={sitePath(pillar.href)}
-                  className="group block rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
+                  className="group block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
                 >
-                  <PillarIcon
-                    type={pillar.icon}
-                    className="h-7 w-7 text-tamay-accent transition-transform duration-200 motion-safe:group-hover:scale-105"
-                  />
-                  <p className="mt-2.5 font-heading text-[13px] lg:text-[15px] font-semibold uppercase tracking-[0.06em] text-white group-hover:text-tamay-accent transition-colors duration-200 leading-snug">
+                  <PillarIcon type={pillar.icon} className="h-6 w-6 text-tamay-accent" />
+                  <p className="mt-2 font-heading text-[12px] lg:text-[13px] font-semibold uppercase tracking-[0.05em] text-white group-hover:text-tamay-accent transition-colors leading-snug">
                     {pillar.label}
                   </p>
-                  <p className="mt-1.5 text-[10px] lg:text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 leading-snug">
+                  <p className="mt-1 text-[9px] lg:text-[10px] font-semibold tracking-[0.1em] uppercase text-white/70 leading-snug">
                     {pillar.support}
                   </p>
                 </Link>
@@ -196,81 +193,63 @@ export function HomeHero() {
           </ul>
 
           <div className="mt-5 lg:mt-6 flex items-center gap-3">
-            <span className="h-px w-9 bg-tamay-accent/65" aria-hidden />
-            <p className="font-heading text-[10px] lg:text-[11px] font-semibold tracking-[0.24em] uppercase text-tamay-accent/95">
+            <span className="h-px w-8 bg-tamay-accent/65" aria-hidden />
+            <p className="font-heading text-[10px] font-semibold tracking-[0.22em] uppercase text-tamay-accent/95">
               From Our Family to Yours
             </p>
-            <span className="h-px w-9 bg-tamay-accent/65" aria-hidden />
+            <span className="h-px w-8 bg-tamay-accent/65" aria-hidden />
           </div>
         </div>
 
-        {/* RIGHT — one integrated editorial composition (~58–60%) */}
-        <div className="relative z-[1] min-w-0 grid grid-cols-[minmax(0,1fr)_3.25rem] xl:grid-cols-[minmax(0,1fr)_3.75rem] gap-2 items-stretch">
-          <div
-            className="min-w-0 grid gap-[3px] h-full overflow-hidden"
-            style={{
-              gridTemplateRows: "minmax(0,2fr) minmax(0,1fr)",
-              boxShadow: "0 18px 48px rgba(0,0,0,0.28)",
-            }}
-          >
-            {/* Dominant team image */}
-            <div className="group relative overflow-hidden min-h-[360px] lg:min-h-[420px] xl:min-h-[480px]">
+        {/* RIGHT — supporting imagery (~52–54%) */}
+        <div className="relative z-[1] min-w-0 grid grid-cols-[minmax(0,1fr)_2.75rem] xl:grid-cols-[minmax(0,1fr)_3.25rem] gap-2 items-start">
+          <div className="min-w-0 flex flex-col gap-2.5">
+            <div className="relative overflow-hidden rounded-sm aspect-[16/10] lg:aspect-[16/9.5] ring-1 ring-white/10">
               <Image
                 src={TEAM_SRC}
                 alt="Tamay Enterprises team reviewing project plans together in a premium home"
                 fill
-                className="object-cover object-[center_38%] transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
-                sizes="(max-width: 1024px) 58vw, 55vw"
+                className="object-cover object-[center_38%]"
+                sizes="(max-width: 1024px) 52vw, 48vw"
                 priority
               />
-              {/* Soft seam into navy — does not wash faces */}
-              <div
-                className="pointer-events-none absolute inset-y-0 left-0 w-10 lg:w-14"
-                aria-hidden
-                style={{
-                  background: "linear-gradient(90deg, rgba(11,22,40,0.55) 0%, rgba(11,22,40,0.18) 45%, transparent 100%)",
-                }}
-              />
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-px bg-tamay-accent/45" aria-hidden />
             </div>
 
-            {/* Supporting RE | Logistics — same system, tight gap */}
-            <div className="grid grid-cols-2 gap-[3px] min-h-[210px] lg:min-h-[240px] xl:min-h-[260px]">
-              <div className="group relative overflow-hidden min-h-[210px]">
+            <div className="grid grid-cols-2 gap-2.5">
+              <div className="relative overflow-hidden rounded-sm aspect-[16/11] ring-1 ring-white/10">
                 <Image
                   src={REAL_ESTATE_SRC}
                   alt="Premium modern home at blue hour representing Tamay Real Estate"
                   fill
-                  className="object-cover object-center transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 30vw, 28vw"
+                  className="object-cover object-center"
+                  sizes="(max-width: 1024px) 26vw, 24vw"
                 />
                 <CaptionScrim />
-                <div className="absolute inset-x-0 bottom-0 p-3 lg:p-3.5">
-                  <p className="font-heading text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase text-tamay-accent">
+                <div className="absolute inset-x-0 bottom-0 p-2.5 lg:p-3">
+                  <p className="font-heading text-[10px] lg:text-[11px] font-bold tracking-[0.16em] uppercase text-tamay-accent">
                     Real Estate
                   </p>
-                  <p className="mt-1 text-[10px] lg:text-[11px] font-medium tracking-[0.1em] uppercase text-white leading-snug">
+                  <p className="mt-0.5 text-[9px] lg:text-[10px] font-medium tracking-[0.08em] uppercase text-white leading-snug">
                     Properties for
                     <br />A Brighter Tomorrow
                   </p>
                 </div>
-                <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-tamay-accent/30" aria-hidden />
               </div>
 
-              <div className="group relative overflow-hidden min-h-[210px]">
+              <div className="relative overflow-hidden rounded-sm aspect-[16/11] ring-1 ring-white/10">
                 <Image
                   src={LOGISTICS_SRC}
                   alt="Tamay-branded logistics van and team member with delivery materials"
                   fill
-                  className="object-cover object-[40%_center] transition-transform duration-500 motion-safe:group-hover:scale-[1.02]"
-                  sizes="(max-width: 1024px) 30vw, 28vw"
+                  className="object-cover object-[40%_center]"
+                  sizes="(max-width: 1024px) 26vw, 24vw"
                 />
                 <CaptionScrim />
-                <div className="absolute inset-x-0 bottom-0 p-3 lg:p-3.5">
-                  <p className="font-heading text-[11px] lg:text-xs font-bold tracking-[0.18em] uppercase text-tamay-accent">
+                <div className="absolute inset-x-0 bottom-0 p-2.5 lg:p-3">
+                  <p className="font-heading text-[10px] lg:text-[11px] font-bold tracking-[0.16em] uppercase text-tamay-accent">
                     Logistics
                   </p>
-                  <p className="mt-1 text-[10px] lg:text-[11px] font-medium tracking-[0.1em] uppercase text-white leading-snug">
+                  <p className="mt-0.5 text-[9px] lg:text-[10px] font-medium tracking-[0.08em] uppercase text-white leading-snug">
                     Delivering Progress
                     <br />
                     Every Step of the Way
@@ -281,13 +260,13 @@ export function HomeHero() {
           </div>
 
           <div
-            className="hidden lg:flex flex-col justify-start items-center gap-2.5 pt-5 pointer-events-none"
+            className="hidden lg:flex flex-col justify-start items-center gap-2 pt-3 pointer-events-none"
             aria-hidden
           >
             {["Spaces", "People", "Build", "Brighter", "Lives In"].map((word) => (
               <span
                 key={word}
-                className="font-heading text-[9px] xl:text-[10px] font-semibold tracking-[0.2em] uppercase text-tamay-accent/55 leading-tight text-center max-w-[3.75rem]"
+                className="font-heading text-[8px] xl:text-[9px] font-semibold tracking-[0.18em] uppercase text-tamay-accent/50 leading-tight text-center max-w-[3.5rem]"
               >
                 {word}
               </span>
@@ -296,28 +275,27 @@ export function HomeHero() {
         </div>
       </div>
 
-      {/* ========== MOBILE — shorter intentional journey ========== */}
-      <div className="relative md:hidden px-4 pt-7 pb-8">
+      {/* ========== MOBILE — compact approved flow ========== */}
+      <div className="relative md:hidden px-4 pt-7 pb-7">
         <div className="flex items-center gap-3">
           <p className="font-heading text-[10px] font-semibold tracking-[0.28em] uppercase text-tamay-accent">
             Tamay Enterprises
           </p>
-          <span className="h-px w-9 bg-tamay-accent/80" aria-hidden />
+          <span className="h-px w-8 bg-tamay-accent/80" aria-hidden />
         </div>
 
-        <h1 className="mt-3 font-heading normal-case text-[2.2rem] sm:text-[2.45rem] font-normal leading-[1.08] tracking-normal">
-          <span className="text-white">One Company.</span>
-          <br />
-          <span className="text-tamay-accent">Complete Solutions.</span>
+        <h1 className="mt-3 font-heading normal-case text-[2.05rem] sm:text-[2.25rem] font-normal leading-[1.1] tracking-normal">
+          <span className="block text-white">One Company.</span>
+          <span className="block text-tamay-accent">Complete Solutions.</span>
         </h1>
 
-        <p className="mt-3.5 text-[15px] text-white/90 leading-[1.65] max-w-[34rem]">
+        <p className="mt-3 text-[14px] text-white/88 leading-[1.6]">
           Real Estate, Construction, and Logistics — coordinated to help you buy, build, improve, and move forward with
           confidence.
         </p>
 
-        {/* Team image immediately after copy */}
-        <div className="relative mt-5 aspect-[16/10] overflow-hidden shadow-[0_12px_32px_rgba(0,0,0,0.28)]">
+        {/* Main team — medium landscape */}
+        <div className="relative mt-4 aspect-[16/10] overflow-hidden rounded-sm ring-1 ring-white/10">
           <Image
             src={TEAM_SRC}
             alt="Tamay Enterprises team reviewing project plans together in a premium home"
@@ -328,66 +306,90 @@ export function HomeHero() {
           />
         </div>
 
-        {/* Division swipe — first card full, next peek visible */}
-        <div
-          className="mt-5 -mx-4 pl-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory"
-          role="region"
-          aria-label="Tamay division navigation"
-          tabIndex={0}
-        >
-          <ul className="flex gap-3 list-none m-0 p-0 pr-4">
+        {/* Compact supporting RE | Logistics thumbnails — NOT giant stacked cards */}
+        <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-sm ring-1 ring-white/10">
+            <Image
+              src={REAL_ESTATE_SRC}
+              alt="Premium modern home at blue hour representing Tamay Real Estate"
+              fill
+              className="object-cover object-center"
+              sizes="45vw"
+            />
+            <CaptionScrim />
+            <div className="absolute inset-x-0 bottom-0 p-2">
+              <p className="font-heading text-[9px] font-bold tracking-[0.14em] uppercase text-tamay-accent">
+                Real Estate
+              </p>
+            </div>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-sm ring-1 ring-white/10">
+            <Image
+              src={LOGISTICS_SRC}
+              alt="Tamay-branded logistics van and team member with delivery materials"
+              fill
+              className="object-cover object-[40%_center]"
+              sizes="45vw"
+            />
+            <CaptionScrim />
+            <div className="absolute inset-x-0 bottom-0 p-2">
+              <p className="font-heading text-[9px] font-bold tracking-[0.14em] uppercase text-tamay-accent">
+                Logistics
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* All 3 divisions visible — stacked rows, no swipe */}
+        <nav className="mt-4" aria-label="Tamay divisions">
+          <ul className="list-none m-0 p-0 flex flex-col gap-2">
             {PILLARS.map((pillar) => (
-              <li
-                key={pillar.label}
-                className="snap-start shrink-0 w-[78%] max-w-[19.5rem]"
-              >
+              <li key={pillar.label}>
                 <Link
                   href={sitePath(pillar.href)}
-                  className="flex items-start gap-3 min-h-[4.75rem] border border-tamay-accent/35 bg-white/[0.03] px-4 py-3.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
+                  className="flex items-center gap-3 min-h-12 border border-tamay-accent/30 bg-white/[0.03] px-3.5 py-2.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
                 >
-                  <PillarIcon type={pillar.icon} className="h-7 w-7 text-tamay-accent shrink-0 mt-0.5" />
-                  <span className="min-w-0">
-                    <span className="block font-heading text-[13px] font-semibold uppercase tracking-[0.06em] text-white">
+                  <PillarIcon type={pillar.icon} className="h-6 w-6 text-tamay-accent shrink-0" />
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-heading text-[13px] font-semibold uppercase tracking-[0.04em] text-white">
                       {pillar.label}
                     </span>
-                    <span className="block mt-1 text-[10px] font-semibold tracking-[0.1em] uppercase text-white/70">
+                    <span className="block mt-0.5 text-[9px] font-semibold tracking-[0.1em] uppercase text-white/65">
                       {pillar.support}
                     </span>
+                  </span>
+                  <span className="text-tamay-accent/80 text-sm shrink-0" aria-hidden>
+                    ›
                   </span>
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
         {/* CTAs after divisions */}
-        <div className="mt-5 flex flex-col gap-2.5">
+        <div className="mt-4 flex flex-col gap-2.5">
           <Link
             href="#our-services"
-            className="group/cta inline-flex items-center justify-center gap-2 min-h-11 font-semibold text-sm tracking-wide px-5 bg-tamay-accent hover:bg-tamay-accent-hover text-[#0b1628] w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
+            className="inline-flex items-center justify-center gap-2 min-h-11 font-semibold text-sm tracking-wide px-5 bg-tamay-accent hover:bg-tamay-accent-hover text-[#0b1628] w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
           >
             Explore Our Services
-            <span
-              aria-hidden
-              className="inline-block transition-transform duration-200 motion-safe:group-hover/cta:translate-x-0.5"
-            >
-              →
-            </span>
+            <span aria-hidden>→</span>
           </Link>
           <Link
             href={sitePath("/online-appointments")}
-            className="inline-flex items-center justify-center min-h-11 font-semibold text-sm tracking-wide px-5 border border-white/80 text-white hover:bg-white/[0.05] w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex items-center justify-center min-h-11 font-semibold text-sm tracking-wide px-5 border border-white/75 text-white hover:bg-white/[0.05] w-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             Book a Consultation
           </Link>
         </div>
 
-        <div className="mt-6 flex items-center justify-center gap-3">
-          <span className="h-px w-8 bg-tamay-accent/60" aria-hidden />
+        <div className="mt-5 flex items-center justify-center gap-3">
+          <span className="h-px w-7 bg-tamay-accent/60" aria-hidden />
           <p className="font-heading text-[10px] font-semibold tracking-[0.2em] uppercase text-tamay-accent/90">
             From Our Family to Yours
           </p>
-          <span className="h-px w-8 bg-tamay-accent/60" aria-hidden />
+          <span className="h-px w-7 bg-tamay-accent/60" aria-hidden />
         </div>
       </div>
     </section>
