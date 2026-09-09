@@ -284,9 +284,9 @@ export function HomeHero() {
           <span className="h-px w-8 bg-tamay-accent/80" aria-hidden />
         </div>
 
-        <h1 className="mt-3 font-heading normal-case text-[2.05rem] sm:text-[2.25rem] font-normal leading-[1.1] tracking-normal">
+        <h1 className="mt-3 font-heading normal-case text-[1.7rem] sm:text-[1.85rem] font-normal leading-[1.12] tracking-normal">
           <span className="block text-white">One Company.</span>
-          <span className="block text-tamay-accent">Complete Solutions.</span>
+          <span className="block text-tamay-accent whitespace-nowrap">Complete Solutions.</span>
         </h1>
 
         <p className="mt-3 text-[14px] text-white/88 leading-[1.6]">
