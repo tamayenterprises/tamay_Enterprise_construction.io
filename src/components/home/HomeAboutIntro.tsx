@@ -5,6 +5,7 @@
 export function HomeAboutIntro() {
   return (
     <section
+      id="about-us"
       className="relative overflow-hidden bg-[#f7f4ef]"
       aria-labelledby="home-about-intro-heading"
     >
