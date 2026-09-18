@@ -3,6 +3,7 @@ import { AboutUsSection } from "@/components/about/AboutUsSection";
 import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { EstimatePromoSection } from "@/components/home/EstimatePromoSection";
 import { FinancingBanner } from "@/components/home/FinancingBanner";
+import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeImageShowcase } from "@/components/home/HomeImageShowcase";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
@@ -22,6 +23,8 @@ export default async function HomePage() {
   return (
     <>
       <HomeHero />
+
+      <HomeAboutIntro />
 
       <AboutUsSection />
 
