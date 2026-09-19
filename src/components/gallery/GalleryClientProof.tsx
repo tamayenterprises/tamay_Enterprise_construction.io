@@ -19,11 +19,14 @@ const JOE_NAME = JOE_TITLE.replace(/\s*[-–]?\s*testimonial\s*$/i, "").trim() |
 /**
  * Three real Google reviews from REVIEWS — Gallery / Construction fit.
  * Exact names, text, and ratings; do not invent.
+ * Mobile shows Maria P. only; desktop/tablet shows all three.
  */
 const FEATURED_REVIEW_IDS = ["maria-p", "frank-d", "sarah-m"] as const;
 const FEATURED_REVIEWS: Review[] = FEATURED_REVIEW_IDS.map(
   (id) => REVIEWS.find((r) => r.id === id)!,
 ).filter(Boolean);
+/** Mobile-only single review — kitchen renovation / craftsmanship */
+const MOBILE_FEATURED_REVIEW = FEATURED_REVIEWS.find((r) => r.id === "maria-p") ?? FEATURED_REVIEWS[0];
 
 function GoogleIcon({ className = "w-4 h-4" }: { className?: string }) {
   return (
@@ -216,10 +219,17 @@ export function GalleryClientProof() {
           </div>
 
           <div className="min-w-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
+            {/* Mobile: exactly one Google Review */}
+            {MOBILE_FEATURED_REVIEW ? (
+              <div className="md:hidden">
+                <GoogleReviewCard review={MOBILE_FEATURED_REVIEW} />
+              </div>
+            ) : null}
+            {/* Desktop/tablet: all three featured reviews */}
             {FEATURED_REVIEWS.map((review, index) => (
               <div
                 key={review.id}
-                className={index === 2 ? "sm:col-span-2 lg:col-span-1" : undefined}
+                className={`hidden md:block ${index === 2 ? "sm:col-span-2 lg:col-span-1" : ""}`}
               >
                 <GoogleReviewCard review={review} />
               </div>

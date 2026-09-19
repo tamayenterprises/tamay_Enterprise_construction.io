@@ -98,7 +98,7 @@ export function GalleryPromotionSection() {
 
   return (
     <section className="relative bg-[#faf8f5] border-b border-gray-200/70" aria-labelledby="gallery-promo-heading">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-14 lg:py-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-14 lg:py-16">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] gap-8 lg:gap-10 xl:gap-12 lg:items-start">
           {/* Left — featured promo video */}
           <div className="order-1 min-w-0">
@@ -229,8 +229,8 @@ export function GalleryPromotionSection() {
           </div>
         </div>
 
-        {/* Closing promo row */}
-        <div className="mt-10 md:mt-12 pt-8 border-t border-[#c9a227]/25">
+        {/* Closing promo row — desktop/tablet only; hidden on mobile */}
+        <div className="hidden md:block mt-10 md:mt-12 pt-8 border-t border-[#c9a227]/25">
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
             <div>
               <p className="font-heading text-[10px] font-bold tracking-[0.18em] uppercase text-tamay-accent">

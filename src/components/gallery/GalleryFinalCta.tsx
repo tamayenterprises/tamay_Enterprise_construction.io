@@ -159,8 +159,8 @@ export function GalleryFinalCta() {
               </ul>
             </div>
 
-            {/* Right — project collage + brand statement */}
-            <div className="min-w-0 flex flex-col gap-3 sm:gap-3.5">
+            {/* Right — project collage + brand statement (desktop/tablet only) */}
+            <div className="hidden lg:flex min-w-0 flex-col gap-3 sm:gap-3.5">
               <div className="relative overflow-hidden rounded-xl sm:rounded-2xl aspect-[16/10] bg-[#0f1520] ring-1 ring-white/10">
                 <Image
                   src={featured.src}

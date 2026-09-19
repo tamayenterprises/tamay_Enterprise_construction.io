@@ -42,7 +42,7 @@ function PhotoSlide({
       alt={photo.alt}
       fill
       className="object-cover"
-      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 28vw"
+      sizes="(max-width: 767px) 88vw, (max-width: 1023px) 45vw, 33vw"
       unoptimized
     />
   );
@@ -51,10 +51,10 @@ function PhotoSlide({
     <button
       type="button"
       onClick={onOpen}
-      className={`group relative shrink-0 snap-center overflow-hidden rounded-lg sm:rounded-xl bg-[#eceae6] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-tamay-accent transition-[width,transform,opacity] duration-300 ease-out ${
+      className={`group relative shrink-0 snap-center overflow-hidden rounded-lg sm:rounded-xl bg-[#eceae6] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-tamay-accent transition-[opacity,transform] duration-300 ease-out ${
         active
-          ? "w-[85vw] max-w-[340px] sm:w-[46%] sm:max-w-none lg:w-[31%] xl:w-[28%] aspect-[4/3] opacity-100 scale-100 ring-1 ring-[#c9a227]/35"
-          : "w-[72vw] max-w-[280px] sm:w-[40%] sm:max-w-none lg:w-[26%] xl:w-[24%] aspect-[4/3] opacity-80 scale-[0.97] ring-1 ring-black/[0.04]"
+          ? "w-[88vw] max-w-[400px] md:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] aspect-[4/3] opacity-100 ring-1 ring-[#c9a227]/35"
+          : "w-[72vw] max-w-[300px] md:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)] aspect-[4/3] opacity-80 md:opacity-100 ring-1 ring-black/[0.04]"
       }`}
       aria-label={`View larger: ${photo.title}`}
       aria-current={active ? "true" : undefined}
@@ -288,7 +288,7 @@ export function GalleryPhotoHighlights() {
 
       <div
         ref={trackRef}
-        className="flex gap-3 sm:gap-3.5 lg:gap-4 overflow-x-auto px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] pb-2 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+        className="flex gap-3 sm:gap-4 overflow-x-auto px-4 sm:px-6 lg:px-[max(1.5rem,calc((100vw-72rem)/2+1.5rem))] pb-2 scrollbar-hide snap-x snap-mandatory scroll-smooth lg:max-w-6xl lg:mx-auto"
         aria-label="Photo highlights carousel"
       >
         {photos.map((photo, index) => (

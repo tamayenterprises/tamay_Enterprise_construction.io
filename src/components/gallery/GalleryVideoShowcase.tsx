@@ -11,8 +11,29 @@ import {
 import "@/components/reviews/tamay-video-gallery.css";
 
 const NAVY = "#141c2b";
-const INITIAL_VISIBLE = 6;
-const LOAD_MORE_STEP = 6;
+const INITIAL_DESKTOP = 6;
+const INITIAL_MOBILE = 4;
+const LOAD_MORE_DESKTOP = 6;
+const LOAD_MORE_MOBILE = 4;
+
+/** Curated diverse openers for mobile “All” — existing real videos only */
+const MOBILE_ALL_CURATED_IDS = [
+  "complete-basement-renovation-0",
+  "full-bathroom-renovation-0",
+  "home-exterior-upgrade-fairfield-0",
+  "full-home-lighting-0",
+] as const;
+
+function orderMobileAll(videos: GalleryShowcaseVideo[]): GalleryShowcaseVideo[] {
+  const preferred: GalleryShowcaseVideo[] = [];
+  for (const id of MOBILE_ALL_CURATED_IDS) {
+    const found = videos.find((v) => v.id === id);
+    if (found) preferred.push(found);
+  }
+  const preferredIds = new Set(preferred.map((v) => v.id));
+  const rest = videos.filter((v) => !preferredIds.has(v.id));
+  return [...preferred, ...rest];
+}
 
 function thumbCandidates(id: string) {
   return [
@@ -104,30 +125,50 @@ function VideoCard({
 }
 
 /**
- * Video-first Gallery showcase — featured spotlight, filters, grid, load more.
- * Photo Highlights live in GalleryPhotoHighlights (separate section).
+ * Video-first Gallery showcase.
+ * Desktop: chip filters + featured layout. Mobile: accordion + 4-up + Load More.
  */
 export function GalleryVideoShowcase() {
   const reactId = useId();
   const [filter, setFilter] = useState<GalleryVideoFilter>("All");
-  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
+  const [visibleDesktop, setVisibleDesktop] = useState(INITIAL_DESKTOP);
+  const [visibleMobile, setVisibleMobile] = useState(INITIAL_MOBILE);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [browseOpen, setBrowseOpen] = useState(false);
 
-  const filtered = useMemo(
+  const availableFilters = useMemo(() => {
+    return GALLERY_VIDEO_FILTERS.filter((key) => {
+      if (key === "All") return true;
+      if (key === "Commercial") {
+        return GALLERY_SHOWCASE_VIDEOS.some((v) => v.category === "Commercial");
+      }
+      return GALLERY_SHOWCASE_VIDEOS.some((v) => v.category === key);
+    });
+  }, []);
+
+  const filteredDesktop = useMemo(
     () => orderGalleryVideosForFilter(GALLERY_SHOWCASE_VIDEOS, filter),
     [filter],
   );
 
-  const featured = filtered[0] ?? null;
-  const supporting = filtered.slice(1);
-  const visibleSupporting = supporting.slice(0, Math.max(0, visibleCount - 1));
-  const hasMore = visibleCount < filtered.length;
+  const filteredMobile = useMemo(() => {
+    const ordered = orderGalleryVideosForFilter(GALLERY_SHOWCASE_VIDEOS, filter);
+    return filter === "All" ? orderMobileAll(ordered) : ordered;
+  }, [filter]);
+
+  const featured = filteredDesktop[0] ?? null;
+  const desktopSupporting = filteredDesktop.slice(1).slice(0, Math.max(0, visibleDesktop - 1));
+  const desktopHasMore = visibleDesktop < filteredDesktop.length;
+
+  const mobileVisible = filteredMobile.slice(0, visibleMobile);
+  const mobileHasMore = visibleMobile < filteredMobile.length;
 
   const close = useCallback(() => setActiveId(null), []);
   const play = useCallback((id: string) => setActiveId(id), []);
 
   useEffect(() => {
-    setVisibleCount(INITIAL_VISIBLE);
+    setVisibleDesktop(INITIAL_DESKTOP);
+    setVisibleMobile(INITIAL_MOBILE);
   }, [filter]);
 
   useEffect(() => {
@@ -145,14 +186,18 @@ export function GalleryVideoShowcase() {
     };
   }, [activeId, close]);
 
+  const selectFilter = (key: GalleryVideoFilter) => {
+    setFilter(key);
+    setBrowseOpen(false);
+  };
+
   return (
     <section
       id="featured-projects"
       className="relative scroll-mt-24 bg-[#f7f5f1] border-b border-gray-200/80"
       aria-labelledby="gallery-videos-heading"
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-12 sm:pt-14 lg:pt-16 pb-4 sm:pb-6">
-        {/* Intro */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 lg:pt-16 pb-4 sm:pb-6">
         <div className="max-w-2xl">
           <p className="font-heading text-[10px] sm:text-[11px] font-bold tracking-[0.18em] uppercase text-tamay-accent">
             Project Videos
@@ -171,13 +216,13 @@ export function GalleryVideoShowcase() {
           </p>
         </div>
 
-        {/* Filters — horizontal scroll on narrow viewports; wrap on larger */}
+        {/* Desktop / tablet filters */}
         <div
-          className="mt-7 sm:mt-8 -mx-4 px-4 sm:mx-0 sm:px-0 flex gap-2 overflow-x-auto scrollbar-hide sm:flex-wrap sm:overflow-visible pb-1"
+          className="mt-7 sm:mt-8 hidden md:flex gap-2 flex-wrap"
           role="tablist"
           aria-label="Filter project videos"
         >
-          {GALLERY_VIDEO_FILTERS.map((key) => {
+          {availableFilters.map((key) => {
             const active = filter === key;
             return (
               <button
@@ -198,40 +243,125 @@ export function GalleryVideoShowcase() {
           })}
         </div>
 
-        {/* Featured + supporting */}
-        {featured ? (
-          <div className="mt-8 sm:mt-9">
-            <p className="font-heading text-[10px] font-bold tracking-[0.16em] uppercase text-tamay-accent/90 mb-3">
-              Featured
-            </p>
-            <VideoCard video={featured} featured onPlay={play} />
+        {/* Mobile accordion */}
+        <div className="mt-6 md:hidden">
+          <button
+            type="button"
+            aria-expanded={browseOpen}
+            aria-controls={`${reactId}-browse-panel`}
+            id={`${reactId}-browse-trigger`}
+            onClick={() => setBrowseOpen((o) => !o)}
+            className="flex w-full items-center justify-between gap-3 min-h-11 px-4 py-2.5 bg-white ring-1 ring-black/10 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-tamay-accent"
+          >
+            <span className="min-w-0">
+              <span className="block font-heading text-[11px] font-bold tracking-[0.12em] uppercase text-[#141c2b]">
+                Browse by Project Type
+              </span>
+              {filter !== "All" ? (
+                <span className="mt-0.5 block text-[12px] text-gray-600 truncate">{filter}</span>
+              ) : (
+                <span className="mt-0.5 block text-[12px] text-gray-500">All projects</span>
+              )}
+            </span>
+            <svg
+              className={`h-4 w-4 shrink-0 text-[#141c2b] transition-transform duration-200 ${browseOpen ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
 
-            {visibleSupporting.length > 0 ? (
-              <div className="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
-                {visibleSupporting.map((video) => (
-                  <VideoCard key={video.id} video={video} onPlay={play} />
-                ))}
-              </div>
-            ) : null}
+          {browseOpen ? (
+            <ul
+              id={`${reactId}-browse-panel`}
+              role="listbox"
+              aria-labelledby={`${reactId}-browse-trigger`}
+              className="mt-2 list-none m-0 p-0 bg-white ring-1 ring-black/10 divide-y divide-black/[0.06]"
+            >
+              {availableFilters.map((key) => {
+                const active = filter === key;
+                return (
+                  <li key={key} role="option" aria-selected={active}>
+                    <button
+                      type="button"
+                      onClick={() => selectFilter(key)}
+                      className={`w-full text-left px-4 py-3 min-h-11 font-heading text-[11px] font-bold tracking-[0.1em] uppercase transition-colors focus:outline-none focus-visible:bg-[#f7f5f1] ${
+                        active ? "bg-[#141c2b] text-white" : "text-[#141c2b]/80 hover:bg-[#f7f5f1]"
+                      }`}
+                    >
+                      {key}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          ) : null}
+        </div>
 
-            {hasMore ? (
-              <div className="mt-8 sm:mt-9 flex justify-center">
-                <button
-                  type="button"
-                  onClick={() => setVisibleCount((n) => n + LOAD_MORE_STEP)}
-                  className="min-h-11 px-6 py-2.5 font-bold text-sm tracking-wide border-2 border-[#141c2b]/80 text-[#141c2b] hover:bg-[#141c2b] hover:text-white transition-colors"
-                >
-                  Load More Videos
-                </button>
-              </div>
-            ) : null}
-          </div>
-        ) : (
-          <p className="mt-10 text-sm text-gray-600">No videos in this category yet.</p>
-        )}
+        {/* Desktop featured layout */}
+        <div className="hidden md:block mt-8 sm:mt-9">
+          {featured ? (
+            <>
+              <p className="font-heading text-[10px] font-bold tracking-[0.16em] uppercase text-tamay-accent/90 mb-3">
+                Featured
+              </p>
+              <VideoCard video={featured} featured onPlay={play} />
+
+              {desktopSupporting.length > 0 ? (
+                <div className="mt-6 sm:mt-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+                  {desktopSupporting.map((video) => (
+                    <VideoCard key={video.id} video={video} onPlay={play} />
+                  ))}
+                </div>
+              ) : null}
+
+              {desktopHasMore ? (
+                <div className="mt-8 sm:mt-9 flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => setVisibleDesktop((n) => n + LOAD_MORE_DESKTOP)}
+                    className="min-h-11 px-6 py-2.5 font-bold text-sm tracking-wide border-2 border-[#141c2b]/80 text-[#141c2b] hover:bg-[#141c2b] hover:text-white transition-colors"
+                  >
+                    Load More Videos
+                  </button>
+                </div>
+              ) : null}
+            </>
+          ) : (
+            <p className="mt-10 text-sm text-gray-600">No videos in this category yet.</p>
+          )}
+        </div>
+
+        {/* Mobile compact grid */}
+        <div className="md:hidden mt-6">
+          {mobileVisible.length > 0 ? (
+            <div className="grid grid-cols-1 gap-3">
+              {mobileVisible.map((video) => (
+                <VideoCard key={`m-${video.id}`} video={video} onPlay={play} />
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm text-gray-600">No videos in this category yet.</p>
+          )}
+
+          {mobileHasMore ? (
+            <div className="mt-6 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setVisibleMobile((n) => n + LOAD_MORE_MOBILE)}
+                className="min-h-11 px-6 py-2.5 font-bold text-sm tracking-wide border-2 border-[#141c2b]/80 text-[#141c2b] hover:bg-[#141c2b] hover:text-white transition-colors w-full"
+              >
+                Load More Videos
+              </button>
+            </div>
+          ) : null}
+        </div>
       </div>
 
-      <div className="h-10 sm:h-12 lg:h-14" aria-hidden />
+      <div className="h-8 sm:h-12 lg:h-14" aria-hidden />
 
       <div
         className={`tamay-modal${activeId ? " active" : ""}`}
