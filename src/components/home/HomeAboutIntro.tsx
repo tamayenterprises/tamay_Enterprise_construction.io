@@ -1,3 +1,5 @@
+const SERVICE_LINE = ["Construction & Renovation", "Real Estate Solutions", "Local Logistics Support"] as const;
+
 /**
  * Compact editorial About intro — sits directly below Home Hero.
  * Text-only: no icons, cards, photos, or CTAs.
@@ -9,20 +11,29 @@ export function HomeAboutIntro() {
       className="relative overflow-hidden bg-[#f7f4ef]"
       aria-labelledby="home-about-intro-heading"
     >
-      {/* Extremely faint geometric lines — left side only */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-tamay-accent/45 to-transparent"
         aria-hidden
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(11,22,40,0.7) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(11,22,40,0.7) 1px, transparent 1px)
-          `,
-          backgroundSize: "56px 56px",
-          maskImage: "linear-gradient(115deg, black 0%, black 35%, transparent 70%)",
-          WebkitMaskImage: "linear-gradient(115deg, black 0%, black 35%, transparent 70%)",
-        }}
       />
+
+      <svg
+        className="pointer-events-none absolute left-1/2 bottom-0 -translate-x-1/2 w-[min(1100px,140%)] h-auto text-[#0b1628] opacity-[0.045]"
+        viewBox="0 0 1100 260"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.25"
+        strokeLinejoin="round"
+        aria-hidden
+      >
+        <path d="M0 250h1100" />
+        <path d="M90 250V150l110-80 110 80v100" />
+        <path d="M170 250v-60h60v60" />
+        <path d="M380 250V120l170-100 170 100v130" />
+        <path d="M470 250V170h160v80" />
+        <path d="M550 20v-10" />
+        <path d="M790 250V160l110-75 110 75v90" />
+        <path d="M870 250v-55h60v55" />
+      </svg>
 
       <div className="relative max-w-[980px] mx-auto px-5 sm:px-8 lg:px-10 py-10 sm:py-12 lg:py-14">
         <div className="flex items-center justify-center gap-3">
@@ -35,10 +46,10 @@ export function HomeAboutIntro() {
 
         <h2
           id="home-about-intro-heading"
-          className="mt-4 sm:mt-5 font-heading text-[1.65rem] sm:text-[2rem] lg:text-[2.35rem] font-normal leading-[1.15] tracking-normal text-center text-balance"
+          className="mt-4 sm:mt-5 font-heading text-[1.65rem] sm:text-[2.1rem] lg:text-[2.5rem] font-normal leading-[1.15] tracking-normal text-center"
         >
-          <span className="text-[#0b1628]">One Trusted Team.</span>{" "}
-          <span className="text-tamay-accent">Multiple Service Areas.</span>
+          <span className="block text-[#0b1628]">One Trusted Team.</span>
+          <span className="block text-tamay-accent">Multiple Service Areas.</span>
         </h2>
 
         <p className="mt-5 sm:mt-6 mx-auto max-w-[42rem] lg:max-w-[46rem] text-[15px] sm:text-base text-[#0b1628]/82 leading-[1.7] text-center">
@@ -47,6 +58,21 @@ export function HomeAboutIntro() {
           and investors simplify their needs by working with one trusted team across multiple service areas, serving West
           Haven and nearby Connecticut communities.
         </p>
+
+        <div className="mx-auto mt-6 sm:mt-7 h-px w-12 bg-tamay-accent/60" aria-hidden />
+
+        <ul className="mt-5 sm:mt-6 list-none m-0 p-0 flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-0">
+          {SERVICE_LINE.map((item, index) => (
+            <li
+              key={item}
+              className={`font-heading text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#0b1628]/85 text-center lg:px-7 ${
+                index > 0 ? "lg:border-l lg:border-tamay-accent/55" : ""
+              }`}
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
