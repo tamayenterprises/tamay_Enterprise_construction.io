@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { EstimatePromoSection } from "@/components/home/EstimatePromoSection";
-import { FinancingBanner } from "@/components/home/FinancingBanner";
 import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeImageShowcase } from "@/components/home/HomeImageShowcase";
@@ -24,8 +23,6 @@ export default async function HomePage() {
       <HomeHero />
 
       <HomeAboutIntro />
-
-      <FinancingBanner />
 
       <ServicesSectionTitle />
 
