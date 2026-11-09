@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import { ConstructionFinancingSection } from "@/components/construction/ConstructionFinancingSection";
 import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
 import { HomeClientProof } from "@/components/home/HomeClientProof";
 import { HomeFinalCTA } from "@/components/home/HomeFinalCTA";
-import { HomeFinancing } from "@/components/home/HomeFinancing";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
 import { HomeSmallProjectEstimator } from "@/components/home/HomeSmallProjectEstimator";
@@ -78,7 +78,7 @@ export default async function HomePage() {
 
       <HomeWhyTamay />
 
-      <HomeFinancing />
+      <ConstructionFinancingSection />
 
       <HomeClientProof />
 
