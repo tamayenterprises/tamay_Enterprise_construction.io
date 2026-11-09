@@ -8,7 +8,6 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
 import { HomeSmallProjectEstimator } from "@/components/home/HomeSmallProjectEstimator";
 import { HomeWhyTamay } from "@/components/home/HomeWhyTamay";
-import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { DivisionCard } from "@/components/ui/DivisionCard";
 import { getResolvedSiteMedia } from "@/lib/siteImages";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
@@ -84,8 +83,6 @@ export default async function HomePage() {
       <HomeClientProof />
 
       <HomeFinalCTA />
-
-      <SiteContactSection />
 
       <HomeLocationMap />
     </>

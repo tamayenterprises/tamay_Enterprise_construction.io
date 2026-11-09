@@ -85,6 +85,7 @@ const secondaryCtaClass =
 export function HomeFinalCTA() {
   return (
     <section
+      id="contact"
       className="relative isolate overflow-hidden min-h-[640px] lg:min-h-[720px] flex flex-col justify-center"
       aria-labelledby="home-final-cta-heading"
     >
