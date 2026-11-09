@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
+import { HomeClientProof } from "@/components/home/HomeClientProof";
 import { HomeFinancing } from "@/components/home/HomeFinancing";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
@@ -81,6 +82,8 @@ export default async function HomePage() {
       <HomeWhyTamay />
 
       <HomeFinancing />
+
+      <HomeClientProof />
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
