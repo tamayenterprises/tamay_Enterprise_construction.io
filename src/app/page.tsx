@@ -7,11 +7,8 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
 import { HomeSmallProjectEstimator } from "@/components/home/HomeSmallProjectEstimator";
 import { HomeWhyTamay } from "@/components/home/HomeWhyTamay";
-import { ReviewsSection } from "@/components/home/ReviewsSection";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { DivisionCard } from "@/components/ui/DivisionCard";
-import { SERVICE_AREAS } from "@/lib/site";
 import { getResolvedSiteMedia } from "@/lib/siteImages";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 export const metadata: Metadata = buildSocialMetadata("home");
@@ -84,18 +81,6 @@ export default async function HomePage() {
       <HomeFinancing />
 
       <HomeClientProof />
-
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <SectionHeading
-            copyKey="home.serviceArea"
-            title="Proudly Serving West Haven & Nearby Connecticut Communities"
-            subtitle={`Based in West Haven, CT, Tamay Enterprises proudly serves clients in ${SERVICE_AREAS.slice(0, 8).join(", ")}, and surrounding Connecticut communities. Our local presence allows us to provide responsive service while supporting projects throughout the region.`}
-          />
-        </div>
-      </section>
-
-      <ReviewsSection showVideoTestimonials />
 
       <SiteContactSection />
 
