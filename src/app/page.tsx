@@ -5,6 +5,7 @@ import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeImageShowcase } from "@/components/home/HomeImageShowcase";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
+import { HomeSmallProjectEstimator } from "@/components/home/HomeSmallProjectEstimator";
 import { ReviewsSection } from "@/components/home/ReviewsSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
@@ -76,6 +77,8 @@ export default async function HomePage() {
         ctaLabel="Talk to Dispatch"
         ctaOpensLiveChat
       />
+
+      <HomeSmallProjectEstimator />
 
       <section className="py-16 bg-tamay-primary text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
