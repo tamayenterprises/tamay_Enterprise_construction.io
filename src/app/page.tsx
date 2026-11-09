@@ -3,7 +3,6 @@ import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
 import { HomeFinancing } from "@/components/home/HomeFinancing";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeImageShowcase } from "@/components/home/HomeImageShowcase";
 import { HomeLocationMap } from "@/components/home/HomeLocationMap";
 import { HomeSmallProjectEstimator } from "@/components/home/HomeSmallProjectEstimator";
 import { HomeWhyTamay } from "@/components/home/HomeWhyTamay";
@@ -92,8 +91,6 @@ export default async function HomePage() {
           />
         </div>
       </section>
-
-      <HomeImageShowcase />
 
       <ReviewsSection showVideoTestimonials />
 
