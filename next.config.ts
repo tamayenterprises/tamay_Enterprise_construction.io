@@ -14,6 +14,7 @@ const supabaseHost = supabaseStorageHost();
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
+  allowedDevOrigins: ["10.0.0.7"],
   images: {
     remotePatterns: [
       {
