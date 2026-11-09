@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { constructionOutlineLinkClass } from "@/components/construction/constructionCtaStyles";
-import { appointmentScheduleHref } from "@/lib/onlineAppointments";
+"use client";
+
+import { useId, useState } from "react";
 
 const SERVICE_GROUPS = [
   {
@@ -78,9 +78,12 @@ function SystemsIcon() {
 }
 
 /**
- * Service-discovery section — live HTML/CSS only (no planning graphic).
+ * Service-discovery section — single-open accordion of the four planning groups.
  */
 export function ConstructionPlanningSection() {
+  const baseId = useId();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <section className="py-12 md:py-16 bg-[#faf8f5] border-b border-gray-200/60">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -93,44 +96,69 @@ export function ConstructionPlanningSection() {
           </p>
         </div>
 
-        <div className="mt-8 md:mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-6 lg:gap-0">
+        <ul className="mt-7 md:mt-9 max-w-3xl list-none m-0 p-0 border-t border-gray-200/80">
           {SERVICE_GROUPS.map((group, index) => {
             const Icon = group.icon;
+            const open = openIndex === index;
+            const triggerId = `${baseId}-trigger-${index}`;
+            const panelId = `${baseId}-panel-${index}`;
             return (
-              <article
-                key={group.title}
-                className={`min-w-0 ${index > 0 ? "lg:pl-8 lg:border-l lg:border-gray-200/70" : "lg:pr-8"}`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <Icon />
-                  <h3 className="font-heading text-base sm:text-lg text-tamay-primary font-semibold leading-snug">
-                    {group.title}
-                  </h3>
+              <li key={group.title} className="border-b border-gray-200/80">
+                <h3 className="m-0">
+                  <button
+                    type="button"
+                    id={triggerId}
+                    aria-expanded={open}
+                    aria-controls={panelId}
+                    onClick={() => setOpenIndex(open ? null : index)}
+                    className="flex w-full items-center gap-3 min-h-14 py-3.5 text-left focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
+                  >
+                    <Icon />
+                    <span
+                      className={`flex-1 font-heading text-base sm:text-lg font-semibold leading-snug transition-colors ${
+                        open ? "text-tamay-primary" : "text-tamay-primary/85"
+                      }`}
+                    >
+                      {group.title}
+                    </span>
+                    <svg
+                      className={`h-4 w-4 shrink-0 text-tamay-accent transition-transform duration-200 motion-reduce:transition-none ${
+                        open ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </h3>
+
+                <div
+                  id={panelId}
+                  role="region"
+                  aria-labelledby={triggerId}
+                  inert={!open}
+                  className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                    open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <ul className="list-none m-0 pl-9 pr-1 pb-4 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                      {group.items.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm text-gray-600 leading-snug">
+                          <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-tamay-accent/80" aria-hidden />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <ul className="mt-3 space-y-1.5">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-gray-600 leading-snug">
-                      <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-tamay-accent/80" aria-hidden />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
+              </li>
             );
           })}
-        </div>
-
-        <div className="mt-10 md:mt-12 pt-8 border-t border-gray-200/70 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <p className="text-sm text-gray-600 leading-relaxed">
-            Not sure where your project fits? Talk to our team.
-          </p>
-          <Link
-            href={appointmentScheduleHref("construction")}
-            className={`${constructionOutlineLinkClass} w-full sm:w-auto shrink-0`}
-          >
-            Book a Construction Consultation
-          </Link>
-        </div>
+        </ul>
       </div>
     </section>
   );
