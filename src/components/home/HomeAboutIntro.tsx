@@ -1,5 +1,3 @@
-const SERVICE_LINE = ["Construction & Renovation", "Real Estate Solutions", "Local Logistics Support"] as const;
-
 /**
  * Compact editorial About intro — sits directly below Home Hero.
  * Text-only: no icons, cards, photos, or CTAs.
@@ -58,21 +56,6 @@ export function HomeAboutIntro() {
           and investors simplify their needs by working with one trusted team across multiple service areas, serving West
           Haven and nearby Connecticut communities.
         </p>
-
-        <div className="mx-auto mt-6 sm:mt-7 h-px w-12 bg-tamay-accent/60" aria-hidden />
-
-        <ul className="mt-5 sm:mt-6 list-none m-0 p-0 flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-0">
-          {SERVICE_LINE.map((item, index) => (
-            <li
-              key={item}
-              className={`font-heading text-[11px] sm:text-xs font-semibold tracking-[0.16em] uppercase text-[#0b1628]/85 text-center lg:px-7 ${
-                index > 0 ? "lg:border-l lg:border-tamay-accent/55" : ""
-              }`}
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   );
