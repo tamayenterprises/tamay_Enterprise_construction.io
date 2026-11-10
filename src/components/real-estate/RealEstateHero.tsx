@@ -5,16 +5,17 @@ import {
   realEstateChatButtonClass,
   realEstateOnDarkLinkClass,
 } from "@/components/real-estate/realEstateCtaStyles";
-import { SitePhoto } from "@/components/images/SitePhoto";
+import Image from "next/image";
 import { SiteText } from "@/components/copy/SiteText";
 
 export function RealEstateHero() {
   return (
     <section className="relative min-h-[70svh] md:min-h-[78svh] flex items-end md:items-center overflow-hidden bg-tamay-primary">
-      <SitePhoto
-        slot="realEstate.approvedHero"
-        alt="Residential property with Tamay callouts for kitchen potential, basement opportunity, layout flexibility, exterior improvements, and future expansion"
-        className="object-cover object-center"
+      <Image
+        src="/homepage/hero/hero-real-estate-clean.jpg"
+        alt="Premium modern home at blue hour representing Tamay Real Estate"
+        fill
+        className="object-cover object-[72%_center] md:object-[65%_center] lg:object-[center_45%]"
         sizes="100vw"
         priority
       />
