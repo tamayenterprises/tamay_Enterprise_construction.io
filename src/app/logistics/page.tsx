@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { HeroBanner } from "@/components/ui/HeroBanner";
+import { LogisticsHero } from "@/components/logistics/LogisticsHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
 import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppointmentSection";
 import { SitePhoto } from "@/components/images/SitePhoto";
 import { SiteText } from "@/components/copy/SiteText";
-import { getResolvedSiteMedia } from "@/lib/siteImages";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 
 export const metadata: Metadata = buildSocialMetadata("logistics");
@@ -65,17 +64,10 @@ function LogisticsPhoto({
 }
 
 export default async function LogisticsPage() {
-  const { images } = await getResolvedSiteMedia();
   const whyChoose = whyChooseFor();
   return (
     <>
-      <HeroBanner
-        image={images.logistics.hero}
-        slotKey="logistics.hero"
-        copyKey="logistics.hero"
-        title="Logistics & Delivery Services"
-        height="medium"
-      />
+      <LogisticsHero />
 
       <section className="py-14 max-w-4xl mx-auto px-4">
         <SectionHeading copyKey="logistics.intro" title="Logistics & Delivery Services in West Haven, CT" />
