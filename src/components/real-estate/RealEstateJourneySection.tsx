@@ -1,11 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { OpenLiveChatButton } from "@/components/layout/OpenLiveChatButton";
-import {
-  realEstateChatButtonClass,
-  realEstateOnDarkLinkClass,
-} from "@/components/real-estate/realEstateCtaStyles";
 import { sitePath } from "@/lib/paths";
 import { SiteText } from "@/components/copy/SiteText";
+
+const BACKGROUND_SRC = "/homepage/hero/hero-real-estate-clean.jpg";
 
 const STAGES = [
   {
@@ -54,86 +53,157 @@ const STAGES = [
   },
 ] as const;
 
+/** Dividers: stacked rows on mobile, 2 × 2 on tablet (incl. landscape), 4 columns from xl. */
+const STAGE_BORDERS = [
+  "",
+  "border-t md:border-t-0 md:border-l",
+  "border-t xl:border-t-0 xl:border-l",
+  "border-t md:border-l",
+] as const;
+
+const stageLinkClass =
+  "inline text-left text-sm font-semibold text-white underline decoration-tamay-accent/50 underline-offset-4 transition-colors hover:text-tamay-accent hover:decoration-tamay-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent";
+
 function StageIcon({ stage }: { stage: string }) {
-  const className = "h-7 w-7 text-tamay-accent";
+  const className = "h-6 w-6 text-tamay-accent";
   if (stage === "FIND") {
     return (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4} d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
       </svg>
     );
   }
   if (stage === "UNDERSTAND") {
     return (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
-        <circle cx="12" cy="12" r="3" strokeWidth={1.6} />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4} d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z" />
+        <circle cx="12" cy="12" r="3" strokeWidth={1.4} />
       </svg>
     );
   }
   if (stage === "IMPROVE") {
     return (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4} d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6" />
       </svg>
     );
   }
   return (
     <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M12 3l8 4v6c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4z" />
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.4} d="M12 3l8 4v6c0 5-3.5 7.5-8 9-4.5-1.5-8-4-8-9V7l8-4z" />
     </svg>
   );
 }
 
 export function RealEstateJourneySection() {
   return (
-    <section className="py-16 md:py-20 bg-white">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <SiteText k="realEstate.journey.title" as="h2" className="font-heading text-2xl sm:text-3xl lg:text-4xl text-tamay-primary font-semibold leading-tight max-w-3xl">
-          Find It. Understand It. Improve It. Maintain It.
-        </SiteText>
-        <SiteText k="realEstate.journey.body" as="p" className="mt-4 text-gray-600 leading-relaxed max-w-3xl" multiline>
-          Real estate is only the beginning. Tamay brings together property guidance, construction knowledge, improvement services, and long-term home care so you can make better decisions before and after closing.
-        </SiteText>
+    <section className="relative isolate overflow-hidden py-14 sm:py-16 lg:py-20">
+      <div className="absolute inset-0 -z-20" aria-hidden>
+        <Image
+          src={BACKGROUND_SRC}
+          alt=""
+          fill
+          className="object-cover object-[70%_45%]"
+          sizes="100vw"
+        />
+      </div>
+      <div
+        className="absolute inset-0 -z-10"
+        aria-hidden
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(11,22,40,0.9) 0%, rgba(11,22,40,0.78) 45%, rgba(11,22,40,0.88) 100%)",
+        }}
+      />
+      <div className="absolute inset-0 -z-10 bg-[#0b1628]/10 md:hidden" aria-hidden />
 
-        <div className="mt-12 flex flex-col lg:flex-row lg:items-stretch">
-          {STAGES.map((stage, index) => (
-            <div key={stage.key} className="flex-1 flex flex-col lg:flex-row">
-              <article className="flex-1 bg-tamay-primary text-white p-6 sm:p-7">
+      <div className="relative max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div className="text-center">
+          <div className="flex items-center justify-center gap-3">
+            <span className="hidden sm:block h-px w-8 bg-tamay-accent/70" aria-hidden />
+            <SiteText
+              k="realEstate.journey.eyebrow"
+              as="p"
+              className="font-heading text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-tamay-accent"
+            >
+              The Tamay Real Estate Approach
+            </SiteText>
+            <span className="hidden sm:block h-px w-8 bg-tamay-accent/70" aria-hidden />
+          </div>
+          <SiteText
+            k="realEstate.journey.headline"
+            as="h2"
+            className="mt-4 font-heading text-[1.75rem] sm:text-[2.15rem] lg:text-[2.5rem] font-normal leading-[1.15] text-white text-balance"
+          >
+            A Complete Real Estate Journey
+          </SiteText>
+          <SiteText
+            k="realEstate.journey.intro"
+            as="p"
+            className="mt-4 mx-auto max-w-[36rem] text-[15px] sm:text-base text-white/75 leading-[1.7]"
+          >
+            From discovery to long-term care, we help you get more value from every property.
+          </SiteText>
+        </div>
+
+        <ol
+          className="mt-9 sm:mt-11 list-none m-0 p-0 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 rounded-xl border border-white/12 backdrop-blur-md shadow-[0_18px_44px_rgba(0,0,0,0.28)]"
+          style={{ backgroundColor: "rgba(11,22,40,0.55)" }}
+        >
+          {STAGES.map((stage, index) => {
+            const key = stage.key.toLowerCase();
+            return (
+              <li
+                key={stage.key}
+                className={`flex flex-col px-6 py-6 sm:px-7 sm:py-7 xl:px-6 xl:py-8 border-white/10 ${STAGE_BORDERS[index]}`}
+              >
                 <StageIcon stage={stage.key} />
-                <SiteText k={`realEstate.journey.${stage.key.toLowerCase()}.title`} as="p" className="mt-4 text-tamay-accent text-xs font-bold tracking-[0.18em]">
+                <SiteText
+                  k={`realEstate.journey.${key}.title`}
+                  as="h3"
+                  className="mt-4 font-heading text-lg sm:text-xl font-normal tracking-[0.04em] text-white"
+                >
                   {stage.title}
                 </SiteText>
-                <SiteText k={`realEstate.journey.${stage.key.toLowerCase()}.subtitle`} as="h3" className="font-heading text-xl font-semibold mt-1">
+                <SiteText
+                  k={`realEstate.journey.${key}.subtitle`}
+                  as="p"
+                  className="mt-1.5 font-heading text-[10px] sm:text-[11px] font-semibold uppercase tracking-[0.16em] text-tamay-accent"
+                >
                   {stage.subtitle}
                 </SiteText>
-                <SiteText k={`realEstate.journey.${stage.key.toLowerCase()}.copy`} as="p" className="mt-3 text-sm text-white/85 leading-relaxed" multiline>
+                <SiteText
+                  k={`realEstate.journey.${key}.copy`}
+                  as="p"
+                  className="mt-3 text-[13.5px] sm:text-sm text-white/72 leading-relaxed"
+                  multiline
+                >
                   {stage.copy}
                 </SiteText>
-                <div className="mt-6">
+                <div className="mt-5 md:mt-auto md:pt-5">
                   {stage.cta.chat ? (
-                    <OpenLiveChatButton className={realEstateChatButtonClass}>
+                    <OpenLiveChatButton className={stageLinkClass}>
                       {stage.cta.label}
+                      <span aria-hidden className="ml-1.5 inline-block text-tamay-accent no-underline">
+                        →
+                      </span>
                     </OpenLiveChatButton>
                   ) : (
                     <Link
                       href={stage.cta.href.startsWith("#") ? stage.cta.href : sitePath(stage.cta.href)}
-                      className={stage.key === "FIND" ? realEstateChatButtonClass : realEstateOnDarkLinkClass}
+                      className={stageLinkClass}
                     >
                       {stage.cta.label}
+                      <span aria-hidden className="ml-1.5 inline-block text-tamay-accent no-underline">
+                        →
+                      </span>
                     </Link>
                   )}
                 </div>
-              </article>
-              {index < STAGES.length - 1 ? (
-                <div
-                  className="h-8 w-px lg:h-auto lg:w-8 bg-tamay-accent self-center lg:self-stretch mx-auto"
-                  aria-hidden
-                />
-              ) : null}
-            </div>
-          ))}
-        </div>
+              </li>
+            );
+          })}
+        </ol>
       </div>
     </section>
   );
