@@ -18,9 +18,7 @@ type DivisionCardProps = {
   ctaOpensLiveChat?: boolean;
   reverse?: boolean;
   copyKey?: string;
-  /** Each service block fills one viewport height */
-  fullScreen?: boolean;
-  /** Extra top spacing when directly under the Our Services title */
+  /** Tighter top spacing when directly under the Our Services title */
   alignTop?: boolean;
 };
 
@@ -38,40 +36,35 @@ export function DivisionCard({
   ctaOpensLiveChat = false,
   reverse,
   copyKey,
-  fullScreen = false,
   alignTop = false,
 }: DivisionCardProps) {
-  const fullScreenLayout = fullScreen
-    ? `min-h-svh flex flex-col justify-start ${
-        alignTop ? "pt-6 sm:pt-8 lg:pt-10" : "pt-8 sm:pt-10 lg:pt-12"
-      } pb-10 sm:pb-12 lg:pb-14`
-    : "py-14 md:py-20";
+  const eyebrowClass =
+    "font-heading text-[10px] sm:text-[11px] font-semibold tracking-[0.22em] uppercase text-tamay-accent";
+  const titleClass =
+    "mt-3 font-heading text-[1.6rem] sm:text-[1.95rem] lg:text-[2.2rem] font-normal leading-[1.15] text-balance text-[#0b1628]";
+  const taglineClass =
+    "mt-4 font-heading text-[12px] sm:text-[13px] font-semibold uppercase tracking-[0.12em] text-[#0b1628]/80";
+  const descriptionClass = "mt-3 text-[15px] sm:text-base leading-[1.7] max-w-xl text-[#0b1628]/75";
 
   return (
-    <section className={`border-b border-gray-100 bg-gray-50 ${fullScreenLayout}`}>
-      <div
-        className={`max-w-6xl mx-auto px-4 sm:px-6 w-full flex-1 flex flex-col justify-center ${
-          fullScreen ? "min-h-0" : ""
-        }`}
-      >
+    <section
+      className={`bg-[#faf8f5] border-b border-[#0b1628]/[0.06] ${
+        alignTop ? "pt-2 sm:pt-4 lg:pt-6" : "pt-10 sm:pt-12 lg:pt-16"
+      } pb-10 sm:pb-12 lg:pb-16`}
+    >
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
         <div
-          className={`grid md:grid-cols-2 w-full ${
-            fullScreen ? "items-start gap-8 lg:gap-12" : "items-center gap-10"
-          } ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}
+          className={`grid grid-cols-1 lg:grid-cols-2 items-center gap-7 sm:gap-8 lg:gap-12 ${
+            reverse ? "lg:[&>*:first-child]:order-2" : ""
+          }`}
         >
-          <div
-            className={`relative overflow-hidden shadow-lg w-full ${
-              fullScreen
-                ? "min-h-[34svh] sm:min-h-[38svh] md:min-h-[58svh] md:max-h-[68svh] md:h-[62svh]"
-                : "aspect-[4/3]"
-            }`}
-          >
+          <div className="relative w-full overflow-hidden rounded-xl aspect-[16/10] md:aspect-[16/9] lg:aspect-[4/3] ring-1 ring-[#0b1628]/[0.06] shadow-[0_12px_30px_rgba(11,22,40,0.10)]">
             {slotKey ? (
               <SitePhoto
                 slot={slotKey}
                 alt={title}
                 className="object-cover object-center"
-                sizes="(max-width:768px) 100vw, 50vw"
+                sizes="(max-width:1023px) 100vw, 50vw"
               />
             ) : (
               <Image
@@ -79,66 +72,55 @@ export function DivisionCard({
                 alt={title}
                 fill
                 className="object-cover object-center"
-                sizes="(max-width:768px) 100vw, 50vw"
+                sizes="(max-width:1023px) 100vw, 50vw"
                 unoptimized
               />
             )}
           </div>
-          <div className={fullScreen ? "md:pt-0" : undefined}>
+
+          <div className="min-w-0 md:max-w-2xl lg:max-w-none">
             {copyKey ? (
-              <SiteText k={`${copyKey}.eyebrow`} as="p" className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-tamay-primary mb-2">
+              <SiteText k={`${copyKey}.eyebrow`} as="p" className={eyebrowClass}>
                 {eyebrow}
               </SiteText>
             ) : (
-              <p className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-tamay-primary mb-2">
-                {eyebrow}
-              </p>
+              <p className={eyebrowClass}>{eyebrow}</p>
             )}
             {copyKey ? (
-              <SiteText k={`${copyKey}.title`} as="h2" className="font-heading text-2xl sm:text-3xl lg:text-4xl text-tamay-primary font-semibold mb-3 leading-tight">
+              <SiteText k={`${copyKey}.title`} as="h2" className={titleClass}>
                 {title}
               </SiteText>
             ) : (
-              <h2 className="font-heading text-2xl sm:text-3xl lg:text-4xl text-tamay-primary font-semibold mb-3 leading-tight">
-                {title}
-              </h2>
+              <h2 className={titleClass}>{title}</h2>
             )}
-            <hr className="section-divider mb-4 !mx-0" />
+            <div className="mt-4 h-px w-10 bg-tamay-accent/70" aria-hidden />
             {copyKey ? (
-              <SiteText k={`${copyKey}.tagline`} as="p" className="text-sm sm:text-base font-bold text-gray-800 uppercase tracking-wide mb-4">
+              <SiteText k={`${copyKey}.tagline`} as="p" className={taglineClass}>
                 {tagline}
               </SiteText>
             ) : (
-              <p className="text-sm sm:text-base font-bold text-gray-800 uppercase tracking-wide mb-4">
-                {tagline}
-              </p>
+              <p className={taglineClass}>{tagline}</p>
             )}
             {copyKey ? (
-              <SiteText k={`${copyKey}.description`} as="p" className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6 max-w-xl" multiline>
+              <SiteText k={`${copyKey}.description`} as="p" className={descriptionClass} multiline>
                 {description}
               </SiteText>
             ) : (
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mb-6 max-w-xl">
-                {description}
-              </p>
+              <p className={descriptionClass}>{description}</p>
             )}
-            <ul className="space-y-1.5 text-gray-700 mb-8">
+            <ul className="mt-4 space-y-1.5 list-none p-0 text-[#0b1628]/80">
               {bullets.map((b, index) => (
-                <li key={`${copyKey ?? "bullet"}-${index}`} className="text-sm sm:text-base">
-                  {copyKey ? (
-                    <SiteText k={`${copyKey}.bullet${index + 1}`}>{b}</SiteText>
-                  ) : (
-                    b
-                  )}
+                <li key={`${copyKey ?? "bullet"}-${index}`} className="text-[14px] sm:text-[15px] leading-snug">
+                  {copyKey ? <SiteText k={`${copyKey}.bullet${index + 1}`}>{b}</SiteText> : b}
                 </li>
               ))}
             </ul>
-            <div className="flex flex-wrap gap-3">
+            <div className="mt-6 flex flex-wrap gap-3">
               <Button href={discoverHref} variant="outline">
                 {copyKey ? <SiteText k={`${copyKey}.discover`}>Discover More</SiteText> : "Discover More"}
               </Button>
               {ctaOpensLiveChat ? (
-                <OpenLiveChatButton className="inline-block font-bold text-sm tracking-wide px-6 py-3 transition-colors text-center bg-tamay-primary hover:bg-tamay-primary-dark text-white">
+                <OpenLiveChatButton className="inline-block font-bold text-sm tracking-wide px-6 py-3 transition-colors text-center bg-[#0b1628] hover:bg-[#13213a] text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent">
                   {copyKey ? <SiteText k={`${copyKey}.cta`}>{ctaLabel}</SiteText> : ctaLabel}
                 </OpenLiveChatButton>
               ) : (

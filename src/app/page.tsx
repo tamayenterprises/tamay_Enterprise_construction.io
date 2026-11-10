@@ -24,7 +24,6 @@ export default async function HomePage() {
       <ServicesSectionTitle />
 
       <DivisionCard
-        fullScreen
         alignTop
         image={images.divisions.construction}
         slotKey="divisions.construction"
@@ -44,7 +43,6 @@ export default async function HomePage() {
       />
 
       <DivisionCard
-        fullScreen
         image={images.divisions.realEstate}
         slotKey="divisions.realEstate"
         copyKey="home.division.realEstate"
@@ -60,7 +58,6 @@ export default async function HomePage() {
       />
 
       <DivisionCard
-        fullScreen
         image={images.divisions.logistics}
         slotKey="divisions.logistics"
         copyKey="home.division.logistics"
