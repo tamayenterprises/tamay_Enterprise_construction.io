@@ -1,5 +1,6 @@
 "use client";
 
+import { useId, useState } from "react";
 import { SitePhoto } from "@/components/images/SitePhoto";
 import { SiteText } from "@/components/copy/SiteText";
 
@@ -23,6 +24,9 @@ const AREAS = [
 ];
 
 export function TamayDifferenceSection() {
+  const baseId = useId();
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
   return (
     <section className="py-16 md:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -41,18 +45,69 @@ export function TamayDifferenceSection() {
             <SiteText k="realEstate.difference.body" as="p" className="mt-4 text-gray-600 leading-relaxed" multiline>
               A home is more than its price, finishes, and number of bedrooms. We help you think about how the property fits your life today, what it may require over time, and what opportunities it may offer in the future.
             </SiteText>
-            <div className="mt-8 space-y-6">
-              {AREAS.map((area, index) => (
-                <div key={area.title} className="border-l-4 border-tamay-accent pl-4">
-                  <SiteText k={`realEstate.difference.item${index + 1}.title`} as="h3" className="font-heading text-lg text-tamay-primary font-semibold">
-                    {area.title}
-                  </SiteText>
-                  <SiteText k={`realEstate.difference.item${index + 1}.text`} as="p" className="mt-1 text-sm sm:text-base text-gray-600 leading-relaxed" multiline>
-                    {area.text}
-                  </SiteText>
-                </div>
-              ))}
-            </div>
+            <ul className="mt-7 list-none m-0 p-0 border-t border-gray-200/80">
+              {AREAS.map((area, index) => {
+                const open = openIndex === index;
+                const triggerId = `${baseId}-trigger-${index}`;
+                const panelId = `${baseId}-panel-${index}`;
+                return (
+                  <li key={area.title} className="border-b border-gray-200/80">
+                    <h3 className="m-0">
+                      <button
+                        type="button"
+                        id={triggerId}
+                        aria-expanded={open}
+                        aria-controls={panelId}
+                        onClick={() => setOpenIndex(open ? null : index)}
+                        className={`flex w-full items-center gap-3 min-h-14 py-3.5 pl-4 text-left border-l-2 transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent ${
+                          open ? "border-tamay-accent" : "border-transparent"
+                        }`}
+                      >
+                        <SiteText
+                          k={`realEstate.difference.item${index + 1}.title`}
+                          className="flex-1 font-heading text-base sm:text-lg text-tamay-primary font-semibold leading-snug"
+                        >
+                          {area.title}
+                        </SiteText>
+                        <svg
+                          className={`h-4 w-4 shrink-0 text-tamay-accent transition-transform duration-200 motion-reduce:transition-none ${
+                            open ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                    </h3>
+                    <div
+                      id={panelId}
+                      role="region"
+                      aria-labelledby={triggerId}
+                      inert={!open}
+                      className={`grid transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none ${
+                        open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                      }`}
+                    >
+                      <div className="overflow-hidden">
+                        <SiteText
+                          k={`realEstate.difference.item${index + 1}.text`}
+                          as="p"
+                          className={`pl-4 pr-6 pb-4 text-sm sm:text-base text-gray-600 leading-relaxed border-l-2 ${
+                            open ? "border-tamay-accent" : "border-transparent"
+                          }`}
+                          multiline
+                        >
+                          {area.text}
+                        </SiteText>
+                      </div>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
       </div>
