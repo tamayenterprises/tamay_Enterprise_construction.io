@@ -82,7 +82,7 @@ function SystemsIcon() {
  */
 export function ConstructionPlanningSection() {
   const baseId = useId();
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section className="py-12 md:py-16 bg-[#faf8f5] border-b border-gray-200/60">
