@@ -62,7 +62,7 @@ export function PlanForTomorrowSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-20 bg-[#faf8f5]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 lg:grid-rows-[auto_1fr] gap-x-10 gap-y-7">
           <div className="min-w-0 lg:col-start-1 lg:row-start-1">
@@ -98,7 +98,7 @@ export function PlanForTomorrowSection() {
                         aria-controls={panelId}
                         onClick={() => setOpenIndex(open ? null : index)}
                         className={`flex w-full items-center gap-3 min-h-14 py-3.5 pl-4 pr-1 text-left border-l-2 transition-colors focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent ${
-                          open ? "border-tamay-accent bg-gray-50" : "border-transparent"
+                          open ? "border-tamay-accent bg-white" : "border-transparent"
                         }`}
                       >
                         <SiteText
@@ -130,7 +130,7 @@ export function PlanForTomorrowSection() {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <div className={`pl-4 pr-4 pb-5 border-l-2 ${open ? "border-tamay-accent bg-gray-50" : "border-transparent"}`}>
+                        <div className={`pl-4 pr-4 pb-5 border-l-2 ${open ? "border-tamay-accent bg-white" : "border-transparent"}`}>
                           <p className="text-xs font-bold tracking-widest uppercase text-tamay-accent">
                             <SiteText k={`realEstate.tomorrow.item${index + 1}.ribbon`}>Today → Tomorrow</SiteText>
                           </p>

@@ -44,7 +44,7 @@ export function BuildersEyesSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-20 bg-gray-50">
+    <section className="py-16 md:py-20 bg-[#eef2f6]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="max-w-3xl">
           <SiteText k="realEstate.builders.title" as="h2" className="font-heading text-2xl sm:text-3xl lg:text-4xl text-tamay-primary font-semibold leading-tight">

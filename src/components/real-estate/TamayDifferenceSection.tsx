@@ -28,7 +28,7 @@ export function TamayDifferenceSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-16 md:py-20 bg-white">
+    <section className="py-16 md:py-20 bg-[#faf8f5]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <figure className="relative aspect-[4/3] overflow-hidden bg-gray-100">

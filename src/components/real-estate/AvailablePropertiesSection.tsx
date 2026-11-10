@@ -32,7 +32,7 @@ export function AvailablePropertiesSection() {
   const visible = listings.filter((listing) => filter === "all" || listing.kind === filter);
 
   return (
-    <section id="available-properties" className="py-16 md:py-20 bg-gray-50 scroll-mt-24">
+    <section id="available-properties" className="py-16 md:py-20 bg-[#eef2f6] scroll-mt-24">
       <span id="houses-for-sale" className="sr-only">
         Houses for sale
       </span>
