@@ -1,7 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { SmallProjectEstimatorSection } from "@/components/estimator/SmallProjectEstimatorSection";
-import { appointmentScheduleHref } from "@/lib/onlineAppointments";
 import { ConstructionFinancingSection } from "@/components/construction/ConstructionFinancingSection";
 import { ServicesSectionTitle } from "@/components/home/ServicesSectionTitle";
 import { HomeAboutIntro } from "@/components/home/HomeAboutIntro";
@@ -83,29 +80,6 @@ export default async function HomePage() {
           discoverLabel="Explore Assembly & Installation →"
         />
       </DivisionCardGrid>
-
-      <SmallProjectEstimatorSection
-        id="small-project-estimator"
-        headingId="home-small-estimator-heading"
-        eyebrow="Small Project Estimator"
-        title="Need Help With a Small Home Project?"
-        intro="Use our estimator for smaller repairs, assemblies, and individual installations — such as TV mounting, vanity installation, drywall patching, painting, faucet replacement, and lighting installation."
-        note={
-          <>
-            For full kitchen, bathroom, addition, or renovation projects, please{" "}
-            <Link
-              href={appointmentScheduleHref("construction")}
-              className="font-semibold text-[#0b1628] underline decoration-tamay-accent/60 underline-offset-4 hover:decoration-tamay-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent"
-            >
-              schedule a consultation
-            </Link>{" "}
-            with our team.
-          </>
-        }
-        cardTitle="Try Our Small Project Estimator"
-        cardBody="Select a small repair, assembly, or individual installation to get a starting estimate."
-        disclaimer="Estimates are preliminary and intended for smaller projects only. Full renovations and larger construction projects require a consultation and project-specific review."
-      />
 
       <HomeWhyTamay />
 
