@@ -112,17 +112,6 @@ export default async function LogisticsPage() {
       <LogisticsHowWeHelpSection services={deliveryServices} />
 
       <section className="py-14 max-w-4xl mx-auto px-4">
-        <SectionHeading copyKey="logistics.services" title="Our Logistics & Delivery Services" />
-        <SiteText k="logistics.services.intro" as="p" className="text-gray-600 text-center mb-4 -mt-4">
-          Tamay Enterprises provides logistics and delivery services including:
-        </SiteText>
-        <ul className="list-disc pl-5 text-gray-700 space-y-2 max-w-xl mx-auto mb-8">
-          {deliveryServices.map((s, index) => (
-            <SiteText k={`logistics.services.item${index + 1}`} as="li" key={`logistics.services.item${index + 1}`}>
-              {s}
-            </SiteText>
-          ))}
-        </ul>
         <div className="bg-gray-50 rounded-sm p-6 max-w-xl mx-auto text-center">
           <SiteText k="logistics.quote.title" as="h3" className="font-heading text-lg text-tamay-primary font-semibold mb-3">
             Request a Quote
