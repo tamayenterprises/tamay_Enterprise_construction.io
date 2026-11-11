@@ -8,8 +8,7 @@ import { BathroomRenovationSection } from "@/components/construction/BathroomRen
 import { HomeAdditionsSection } from "@/components/construction/HomeAdditionsSection";
 import { MoreWaysImproveHomesSection } from "@/components/construction/MoreWaysImproveHomesSection";
 import { ConstructionProjectsSection } from "@/components/construction/ConstructionProjectsSection";
-import { HowWeBringItTogetherSection } from "@/components/construction/HowWeBringItTogetherSection";
-import { ConstructionProcessSection } from "@/components/construction/ConstructionProcessSection";
+import { ConstructionHowWeWorkSection } from "@/components/construction/ConstructionHowWeWorkSection";
 import { ConstructionReviewsSection } from "@/components/construction/ConstructionReviewsSection";
 import { ConstructionFinancingSection } from "@/components/construction/ConstructionFinancingSection";
 import { ConstructionServiceAreaSection } from "@/components/construction/ConstructionServiceAreaSection";
@@ -30,8 +29,7 @@ export default function ConstructionPage() {
       <HomeAdditionsSection />
       <MoreWaysImproveHomesSection />
       <ConstructionProjectsSection />
-      <HowWeBringItTogetherSection />
-      <ConstructionProcessSection />
+      <ConstructionHowWeWorkSection />
       <ConstructionReviewsSection />
       <ConstructionFinancingSection />
       <ConstructionServiceAreaSection />
