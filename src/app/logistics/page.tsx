@@ -3,6 +3,7 @@ import { LogisticsHero } from "@/components/logistics/LogisticsHero";
 import { LogisticsHowWeHelpSection } from "@/components/logistics/LogisticsHowWeHelpSection";
 import { LogisticsWhyChooseSection } from "@/components/logistics/LogisticsWhyChooseSection";
 import { LogisticsWhoWeSupportSection } from "@/components/logistics/LogisticsWhoWeSupportSection";
+import { LogisticsProcessSection } from "@/components/logistics/LogisticsProcessSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
@@ -100,12 +101,7 @@ export default async function LogisticsPage() {
         </div>
       </section>
 
-      <section className="py-14 max-w-4xl mx-auto px-4 text-center">
-        <SectionHeading copyKey="logistics.approach" title="A Structured Approach to Logistics" />
-        <SiteText k="logistics.approach.body" as="p" className="text-gray-600 leading-relaxed -mt-4" multiline>
-          Logistics works best when systems are in place. Our team prioritizes clear scheduling, defined responsibilities, and consistent communication to ensure each delivery is completed as planned. This structured approach allows us to support both recurring logistics needs and one-time transportation requests with the same level of care and professionalism.
-        </SiteText>
-      </section>
+      <LogisticsProcessSection />
 
       <ServiceAppointmentSection serviceId="logistics" />
 
