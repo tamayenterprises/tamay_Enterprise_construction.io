@@ -5,6 +5,7 @@ import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
 import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppointmentSection";
 import { SitePhoto } from "@/components/images/SitePhoto";
+import { SmallProjectEstimatorSection } from "@/components/estimator/SmallProjectEstimatorSection";
 import {
   ASSEMBLY_CABINET_FEATURE,
   ASSEMBLY_IMPORTANT_NOTE,
@@ -170,6 +171,17 @@ export default async function AssemblyInstallationPage() {
           </Button>
         </div>
       </section>
+
+      <SmallProjectEstimatorSection
+        id="assembly-estimator"
+        headingId="assembly-estimator-heading"
+        eyebrow="Quick Project Estimate"
+        title="Get a Starting Estimate for Assembly & Installation"
+        intro="Choose a supported assembly or installation service to get a preliminary starting estimate before scheduling your project."
+        cardTitle="Estimate Your Project"
+        cardBody="Select an available assembly or installation service to get started."
+        disclaimer="Estimates are preliminary and may vary based on project conditions, access, materials, quantity, and final scope."
+      />
 
       <section className="bg-tamay-primary text-white">
         <figure className="relative w-full aspect-[1024/282]">
