@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LogisticsHero } from "@/components/logistics/LogisticsHero";
 import { LogisticsHowWeHelpSection } from "@/components/logistics/LogisticsHowWeHelpSection";
+import { LogisticsWhyChooseSection } from "@/components/logistics/LogisticsWhyChooseSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
@@ -18,29 +19,6 @@ const deliveryServices = [
   "Time-sensitive deliveries",
   "Project-based logistics coordination",
 ];
-
-function whyChooseFor() {
-  return [
-    {
-      title: "Professional appearance",
-      text: "Professional appearance and courteous drivers",
-      slot: "logistics.whyChoose.professional",
-      alt: "Tamay logistics team member reviewing operations on a tablet in a warehouse",
-    },
-    {
-      title: "On-time, communication-first operations",
-      text: "Same-day or next-day transport for urgent materials and equipment.",
-      slot: "logistics.whyChoose.delivery",
-      alt: "Package delivery tracking with order delivery confirmation",
-    },
-    {
-      title: "Problem-solving mindset",
-      text: "Problem-solving mindset for tight windows and tricky sites",
-      slot: "logistics.whyChoose.problemSolving",
-      alt: "Strategic problem-solving approach from problem to solution",
-    },
-  ];
-}
 
 const supportAudience = [
   "Local businesses requiring dependable delivery solutions",
@@ -65,7 +43,6 @@ function LogisticsPhoto({
 }
 
 export default async function LogisticsPage() {
-  const whyChoose = whyChooseFor();
   return (
     <>
       <LogisticsHero />
@@ -125,26 +102,7 @@ export default async function LogisticsPage() {
         </div>
       </section>
 
-      <section className="py-14 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4">
-          <SectionHeading copyKey="logistics.why" title="Why Choose Tamay Logistics" />
-          <div className="grid md:grid-cols-3 gap-8">
-            {whyChoose.map((w, index) => (
-              <div key={w.slot} className="bg-white p-6 border-t-4 border-tamay-primary shadow-sm text-center">
-                <div className="relative w-40 h-40 mx-auto mb-5 rounded-full overflow-hidden">
-                  <SitePhoto slot={w.slot} alt={w.alt} sizes="160px" compact />
-                </div>
-                <SiteText k={`logistics.why.item${index + 1}.title`} as="h3" className="font-heading text-tamay-primary font-semibold mb-3">
-                  {w.title}
-                </SiteText>
-                <SiteText k={`logistics.why.item${index + 1}.text`} as="p" className="text-sm text-gray-600 leading-relaxed" multiline>
-                  {w.text}
-                </SiteText>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <LogisticsWhyChooseSection />
 
       <section className="py-14 max-w-4xl mx-auto px-4">
         <SectionHeading copyKey="logistics.support" title="Supporting Businesses & Individuals" />
