@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HeroBanner } from "@/components/ui/HeroBanner";
+import { AssemblyHero } from "@/components/assembly/AssemblyHero";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
@@ -17,7 +17,6 @@ import {
   ASSEMBLY_WHY_PARTNERS,
 } from "@/lib/assemblyInstallation";
 import { appointmentScheduleHref } from "@/lib/onlineAppointments";
-import { getResolvedSiteMedia, mediaSrc } from "@/lib/siteImages";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 import { SiteText } from "@/components/copy/SiteText";
 
@@ -68,20 +67,10 @@ const ASSEMBLY_GROUP_IMAGE_KEYS = [
   "assembly.whiteGloveVanity",
 ] as const;
 
-export default async function AssemblyInstallationPage() {
-  const media = await getResolvedSiteMedia();
+export default function AssemblyInstallationPage() {
   return (
     <>
-      <HeroBanner
-        image={mediaSrc(media, "assembly.hero")}
-        slotKey="assembly.hero"
-        copyKey="assembly.hero"
-        title="Professional Furniture Assembly & Installation"
-        subtitle={ASSEMBLY_INTRO.tagline}
-        height="medium"
-        imageFit="fill"
-        overlayClassName="bg-black/50"
-      />
+      <AssemblyHero />
 
       <section className="py-14 max-w-4xl mx-auto px-4">
         <SiteText k="assembly.intro.heading" as="h2" className="font-heading text-2xl md:text-3xl text-tamay-primary font-bold text-center mb-6">
