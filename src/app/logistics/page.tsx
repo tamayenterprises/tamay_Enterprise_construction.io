@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LogisticsHero } from "@/components/logistics/LogisticsHero";
+import { LogisticsHowWeHelpSection } from "@/components/logistics/LogisticsHowWeHelpSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
@@ -108,27 +109,7 @@ export default async function LogisticsPage() {
         </div>
       </section>
 
-      <section className="py-14 bg-gray-50 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <LogisticsPhoto
-            slot="logistics.warehouseFleet"
-            alt="Tamay Enterprises delivery vans at a warehouse loading dock"
-            className="aspect-[16/10] mb-10"
-          />
-          <SectionHeading copyKey="logistics.reliability" title="Logistics Services Built on Reliability" />
-          <div className="space-y-4 text-gray-600 leading-relaxed -mt-4 text-left md:text-center">
-            <SiteText k="logistics.reliability.body1" as="p" multiline>
-              At Tamay Enterprises, our logistics services are designed to support real-world needs where timing and execution matter. Whether coordinating scheduled deliveries or managing time-sensitive transportation, our team focuses on organized planning, route efficiency, and clear expectations from pickup to final delivery.
-            </SiteText>
-            <SiteText k="logistics.reliability.body2" as="p" multiline>
-              We approach logistics the same way we approach our other divisions — with professionalism, preparation, and responsibility.
-            </SiteText>
-          </div>
-          <Button href="#contact" variant="outline" className="mt-8">
-            <SiteText k="logistics.reliability.cta">Contact us</SiteText>
-          </Button>
-        </div>
-      </section>
+      <LogisticsHowWeHelpSection services={deliveryServices} />
 
       <section className="py-14 max-w-4xl mx-auto px-4">
         <SectionHeading copyKey="logistics.services" title="Our Logistics & Delivery Services" />
