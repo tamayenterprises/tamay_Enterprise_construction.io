@@ -88,20 +88,6 @@ export default async function LogisticsPage() {
 
       <LogisticsHowWeHelpSection services={deliveryServices} />
 
-      <section className="py-14 max-w-4xl mx-auto px-4">
-        <div className="bg-gray-50 rounded-sm p-6 max-w-xl mx-auto text-center">
-          <SiteText k="logistics.quote.title" as="h3" className="font-heading text-lg text-tamay-primary font-semibold mb-3">
-            Request a Quote
-          </SiteText>
-          <SiteText k="logistics.quote.body" as="p" className="text-sm text-gray-600 leading-relaxed mb-6" multiline>
-            Each service is managed with attention to detail and operational consistency to support smooth execution and dependable outcomes.
-          </SiteText>
-          <Button href="#contact" variant="primary">
-            <SiteText k="logistics.quote.cta">Request a Quote</SiteText>
-          </Button>
-        </div>
-      </section>
-
       <LogisticsWhyChooseSection />
 
       <section className="py-14 max-w-4xl mx-auto px-4">
