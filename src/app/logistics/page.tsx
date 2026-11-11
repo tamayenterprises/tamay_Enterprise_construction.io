@@ -88,13 +88,13 @@ export default async function LogisticsPage() {
 
       <LogisticsWhoWeSupportSection />
 
+      <LogisticsProcessSection />
+
       <section className="px-4 pt-10 pb-10 max-w-5xl mx-auto">
         <LogisticsPhoto slot="logistics.routeMap" alt="Regional logistics route map" />
       </section>
 
       <LogisticsLocalRegionalSection />
-
-      <LogisticsProcessSection />
 
       <ServiceAppointmentSection serviceId="logistics" />
 
