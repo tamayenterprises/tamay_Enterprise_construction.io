@@ -61,6 +61,7 @@ const KEY_LABELS: Record<string, string> = {
   "divisions.construction": "Homepage — Construction",
   "divisions.realEstate": "Homepage — Real Estate",
   "divisions.logistics": "Homepage — Logistics",
+  "divisions.assembly": "Homepage — Assembly & Installation",
   "construction.renovation": "Renovations",
   "construction.addition": "Additions",
   "construction.kitchenBath": "Kitchen & bath",

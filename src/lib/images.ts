@@ -56,6 +56,7 @@ export const IMAGES = {
     construction: home("HomePageImage2.webp"),
     realEstate: home("real-estate-division.png"),
     logistics: logisticsFleetVans,
+    assembly: assetUrl("/assembly-installation/services/white-glove-vanity.png"),
   },
   realEstate: {
     hero: assetUrl("/real-estate/hero-banner-coastal-estate.png"),
