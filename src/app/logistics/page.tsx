@@ -4,7 +4,7 @@ import { LogisticsHowWeHelpSection } from "@/components/logistics/LogisticsHowWe
 import { LogisticsWhyChooseSection } from "@/components/logistics/LogisticsWhyChooseSection";
 import { LogisticsWhoWeSupportSection } from "@/components/logistics/LogisticsWhoWeSupportSection";
 import { LogisticsProcessSection } from "@/components/logistics/LogisticsProcessSection";
-import { SectionHeading } from "@/components/ui/SectionHeading";
+import { LogisticsLocalRegionalSection } from "@/components/logistics/LogisticsLocalRegionalSection";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
 import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppointmentSection";
@@ -92,14 +92,7 @@ export default async function LogisticsPage() {
         <LogisticsPhoto slot="logistics.routeMap" alt="Regional logistics route map" />
       </section>
 
-      <section className="py-14 bg-tamay-primary text-white px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <SectionHeading copyKey="logistics.area" light title="Serving West Haven & Nearby Communities" subtitle="Areas we serve:" />
-          <SiteText k="logistics.area.body" as="p" className="text-gray-200 leading-relaxed -mt-4" multiline>
-            Based in West Haven, CT, Tamay Enterprises proudly provides logistics and delivery services throughout Orange, Milford, New Haven, Woodbridge, Bethany, Fairfield, Trumbull, and surrounding areas. Our local presence allows us to respond efficiently while maintaining strong familiarity with regional routes and service expectations.
-          </SiteText>
-        </div>
-      </section>
+      <LogisticsLocalRegionalSection />
 
       <LogisticsProcessSection />
 
