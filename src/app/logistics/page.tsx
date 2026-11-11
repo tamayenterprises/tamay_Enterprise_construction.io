@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LogisticsHero } from "@/components/logistics/LogisticsHero";
 import { LogisticsHowWeHelpSection } from "@/components/logistics/LogisticsHowWeHelpSection";
 import { LogisticsWhyChooseSection } from "@/components/logistics/LogisticsWhyChooseSection";
+import { LogisticsWhoWeSupportSection } from "@/components/logistics/LogisticsWhoWeSupportSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
@@ -18,12 +19,6 @@ const deliveryServices = [
   "Scheduled and coordinated transportation",
   "Time-sensitive deliveries",
   "Project-based logistics coordination",
-];
-
-const supportAudience = [
-  "Local businesses requiring dependable delivery solutions",
-  "Contractors and service providers coordinating materials or equipment",
-  "Individuals needing organized transportation support",
 ];
 
 function LogisticsPhoto({
@@ -90,24 +85,9 @@ export default async function LogisticsPage() {
 
       <LogisticsWhyChooseSection />
 
-      <section className="py-14 max-w-4xl mx-auto px-4">
-        <SectionHeading copyKey="logistics.support" title="Supporting Businesses & Individuals" />
-        <SiteText k="logistics.support.intro" as="p" className="text-gray-600 text-center mb-4 -mt-4">
-          Our logistics services support:
-        </SiteText>
-        <ul className="list-disc pl-5 text-gray-700 space-y-2 max-w-xl mx-auto mb-6">
-          {supportAudience.map((item, index) => (
-            <SiteText k={`logistics.support.item${index + 1}`} as="li" key={`logistics.support.item${index + 1}`}>
-              {item}
-            </SiteText>
-          ))}
-        </ul>
-        <SiteText k="logistics.support.closing" as="p" className="text-gray-600 text-center leading-relaxed" multiline>
-          By combining planning with execution, we help reduce delays, miscommunication, and operational friction.
-        </SiteText>
-      </section>
+      <LogisticsWhoWeSupportSection />
 
-      <section className="px-4 pb-10 max-w-5xl mx-auto">
+      <section className="px-4 pt-10 pb-10 max-w-5xl mx-auto">
         <LogisticsPhoto slot="logistics.routeMap" alt="Regional logistics route map" />
       </section>
 
