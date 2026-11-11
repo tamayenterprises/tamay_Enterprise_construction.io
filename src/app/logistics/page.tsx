@@ -69,20 +69,42 @@ export default async function LogisticsPage() {
     <>
       <LogisticsHero />
 
-      <section className="py-14 max-w-4xl mx-auto px-4">
-        <SectionHeading copyKey="logistics.intro" title="Logistics & Delivery Services in West Haven, CT" />
-        <div className="space-y-4 text-gray-600 text-center leading-relaxed -mt-4">
-          <SiteText k="logistics.intro.eyebrow" as="p" className="text-sm font-semibold tracking-widest uppercase text-tamay-primary">
-            About Us
+      <section className="relative bg-[#faf8f5]" aria-labelledby="logistics-about-heading">
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-tamay-accent/45 to-transparent"
+          aria-hidden
+        />
+        <div className="max-w-[980px] mx-auto px-5 sm:px-8 lg:px-10 py-11 sm:py-14 lg:py-16 text-center">
+          <div className="flex items-center justify-center gap-3">
+            <span className="hidden sm:block h-px w-8 bg-tamay-accent/70" aria-hidden />
+            <SiteText
+              k="logistics.intro.eyebrow"
+              as="p"
+              className="font-heading text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-tamay-accent"
+            >
+              About Us
+            </SiteText>
+            <span className="hidden sm:block h-px w-8 bg-tamay-accent/70" aria-hidden />
+          </div>
+          <h2
+            id="logistics-about-heading"
+            className="mt-4 sm:mt-5 mx-auto max-w-[40rem] font-heading text-[1.55rem] sm:text-[2rem] lg:text-[2.35rem] font-normal leading-[1.18] text-[#0b1628] text-balance"
+          >
+            <SiteText k="logistics.intro.title">Logistics &amp; Delivery Services in West Haven, CT</SiteText>
+          </h2>
+          <SiteText
+            k="logistics.intro.body"
+            as="p"
+            multiline
+            className="mt-5 sm:mt-6 mx-auto max-w-[40rem] lg:max-w-[44rem] text-[15px] sm:text-base text-[#0b1628]/82 leading-[1.7]"
+          >
+            Reliable logistics is not just about moving items from one location to another — it&apos;s about coordination, timing, and accountability. Tamay Enterprises provides professional logistics and delivery services in West Haven, CT and nearby towns, supporting businesses and individuals with dependable local and regional transportation solutions. Our logistics team operates with structure, clear communication, and a focus on efficiency to ensure every delivery is handled with care.
           </SiteText>
-          <SiteText k="logistics.intro.body" as="p" multiline>
-            Reliable logistics is not just about moving items from one location to another — it's about coordination, timing, and accountability. Tamay Enterprises provides professional logistics and delivery services in West Haven, CT and nearby towns, supporting businesses and individuals with dependable local and regional transportation solutions. Our logistics team operates with structure, clear communication, and a focus on efficiency to ensure every delivery is handled with care.
-          </SiteText>
-        </div>
-        <div className="text-center mt-8">
-          <Button href="#contact" variant="accent">
-            <SiteText k="logistics.intro.cta">Get a Fast Quote</SiteText>
-          </Button>
+          <div className="mt-7 sm:mt-8">
+            <Button href="#contact" variant="accent">
+              <SiteText k="logistics.intro.cta">Get a Fast Quote</SiteText>
+            </Button>
+          </div>
         </div>
       </section>
 
