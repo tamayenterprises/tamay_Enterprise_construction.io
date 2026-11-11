@@ -5,9 +5,8 @@ import { LogisticsWhyChooseSection } from "@/components/logistics/LogisticsWhyCh
 import { LogisticsWhoWeSupportSection } from "@/components/logistics/LogisticsWhoWeSupportSection";
 import { LogisticsProcessSection } from "@/components/logistics/LogisticsProcessSection";
 import { LogisticsLocalRegionalSection } from "@/components/logistics/LogisticsLocalRegionalSection";
-import { SiteContactSection } from "@/components/ui/SiteContactSection";
+import { LogisticsFinalCTA } from "@/components/logistics/LogisticsFinalCTA";
 import { Button } from "@/components/ui/Button";
-import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppointmentSection";
 import { SitePhoto } from "@/components/images/SitePhoto";
 import { SiteText } from "@/components/copy/SiteText";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
@@ -96,9 +95,7 @@ export default async function LogisticsPage() {
 
       <LogisticsLocalRegionalSection />
 
-      <ServiceAppointmentSection serviceId="logistics" />
-
-      <SiteContactSection />
+      <LogisticsFinalCTA />
     </>
   );
 }
