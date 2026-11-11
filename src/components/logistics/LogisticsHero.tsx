@@ -70,37 +70,39 @@ const secondaryCtaClass =
 export function LogisticsHero() {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#141c2b] lg:min-h-[78svh] lg:flex lg:items-center"
+      className="relative isolate overflow-hidden bg-[#141c2b] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:flex [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:items-center [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:min-h-[clamp(460px,calc(100svh-81px),680px)]"
       aria-labelledby="logistics-hero-heading"
     >
-      <div className="relative -z-20 aspect-[4/3] sm:aspect-[16/10] lg:absolute lg:inset-0 lg:aspect-auto" aria-hidden>
+      <div
+        className="relative -z-20 aspect-[4/3] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:absolute [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:inset-y-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:right-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:h-full [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:w-auto [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[64%] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[72%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.4)_24%,black_52%)]"
+        aria-hidden
+      >
         <Image
           src={HERO_IMAGE_SRC}
           alt=""
           fill
-          className="object-cover object-center sm:object-[center_30%] lg:object-[center_40%]"
-          sizes="100vw"
+          className="object-cover object-center"
+          sizes="(max-width: 768px) 100vw, 72vw"
           priority
         />
         <div
-          className="absolute inset-0 lg:hidden"
+          className="absolute inset-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden"
           style={{
             background:
-              "linear-gradient(180deg, rgba(20,28,43,0.1) 0%, rgba(20,28,43,0) 40%, rgba(20,28,43,0.7) 80%, #141c2b 100%)",
+              "linear-gradient(180deg, rgba(20,28,43,0.1) 0%, rgba(20,28,43,0) 45%, rgba(20,28,43,0.7) 82%, #141c2b 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:block"
+          style={{
+            background:
+              "linear-gradient(0deg, rgba(20,28,43,0.35) 0%, rgba(20,28,43,0) 30%)",
           }}
         />
       </div>
 
-      <div
-        className="absolute inset-0 -z-10 hidden lg:block"
-        aria-hidden
-        style={{
-          background:
-            "linear-gradient(0deg, rgba(20,28,43,0.55) 0%, rgba(20,28,43,0) 32%), linear-gradient(90deg, rgba(20,28,43,0.94) 0%, rgba(20,28,43,0.88) 34%, rgba(20,28,43,0.62) 50%, rgba(20,28,43,0.2) 66%, rgba(20,28,43,0) 80%)",
-        }}
-      />
-      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 -mt-8 sm:-mt-12 pb-10 lg:mt-0 lg:py-16">
-        <div className="max-w-xl">
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 -mt-8 pb-8 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:py-10 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:py-12">
+        <div className="max-w-xl [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[27rem] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[32rem]">
           <div className="flex items-center gap-3">
             <p className="font-heading text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#c9a227]">
               Logistics &amp; Delivery
@@ -110,7 +112,7 @@ export function LogisticsHero() {
 
           <h1
             id="logistics-hero-heading"
-            className="mt-4 font-heading text-[1.95rem] sm:text-4xl lg:text-[2.75rem] text-white font-semibold leading-[1.1]"
+            className="mt-3 lg:mt-4 font-heading text-[1.85rem] sm:text-[2.1rem] lg:text-[2.5rem] text-white font-semibold leading-[1.1]"
           >
             Move It.
             <br />
@@ -119,36 +121,40 @@ export function LogisticsHero() {
             <span className="text-[#c9a227]">Keep It Moving.</span>
           </h1>
 
-          <p className="mt-4 text-sm sm:text-base text-white/85 leading-relaxed max-w-md">
+          <p className="mt-3 lg:mt-4 text-sm lg:text-[15px] text-white/85 leading-relaxed max-w-md">
             Reliable local and regional logistics support for businesses, contractors, and individuals — coordinated
             with clear communication, dependable scheduling, and hands-on service.
           </p>
 
-          <div className="mt-7 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
-            <a href="#contact" className={primaryCtaClass}>
+          <div className="mt-5 lg:mt-6 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+            <a href="#contact" className={`${primaryCtaClass} md:max-lg:px-4 md:whitespace-nowrap`}>
               Request a Logistics Quote
               <span aria-hidden>→</span>
             </a>
-            <OpenLiveChatButton className={secondaryCtaClass}>Talk to Our Team</OpenLiveChatButton>
+            <OpenLiveChatButton className={`${secondaryCtaClass} md:max-lg:px-4 md:whitespace-nowrap`}>
+              Talk to Our Team
+            </OpenLiveChatButton>
           </div>
         </div>
 
-        <ul className="mt-8 md:mt-10 list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-0 border-t border-white/15 pt-5 max-w-[46rem]">
+        <ul className="mt-6 lg:mt-7 list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-0 border-t border-white/15 pt-4 max-w-[46rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[31rem] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[42rem]">
           {TRUST_ITEMS.map((item, index) => (
             <li
               key={item.title}
               className={`flex items-start gap-2.5 min-w-0 ${
-                index > 0 ? "sm:pl-5 sm:border-l sm:border-[#c9a227]/35" : "sm:pr-5"
-              } ${index === 1 ? "sm:pr-5" : ""}`}
+                index > 0 ? "sm:pl-4 lg:pl-5 sm:border-l sm:border-[#c9a227]/35" : "sm:pr-4 lg:pr-5"
+              } ${index === 1 ? "sm:pr-4 lg:pr-5" : ""}`}
             >
               <span className="mt-0.5">
                 <TrustIcon type={item.icon} />
               </span>
               <span className="min-w-0">
-                <span className="block font-heading text-[12px] sm:text-[13px] font-semibold text-white leading-snug">
+                <span className="block font-heading text-[12px] lg:text-[13px] font-semibold text-white leading-snug">
                   {item.title}
                 </span>
-                <span className="mt-0.5 block text-[12px] sm:text-[13px] text-white/72 leading-snug">{item.support}</span>
+                <span className="mt-0.5 hidden sm:block [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:block text-[12px] text-white/72 leading-snug">
+                  {item.support}
+                </span>
               </span>
             </li>
           ))}
