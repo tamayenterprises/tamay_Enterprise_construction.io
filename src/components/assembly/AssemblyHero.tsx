@@ -74,30 +74,67 @@ export function AssemblyHero() {
       className="relative isolate overflow-hidden bg-[#141c2b] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:flex [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:items-center [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:min-h-[clamp(460px,calc(100svh-81px),680px)]"
       aria-labelledby="assembly-hero-heading"
     >
-      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 pt-9 pb-8 sm:pt-11 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:static [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:py-10 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:py-12">
-        <div className="max-w-xl [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[27rem] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[31rem]">
-          <div className="flex items-center gap-3">
+      <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 pb-8 sm:pb-10 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:static [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:py-10 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:py-12">
+        <div className="absolute z-10 top-6 sm:top-8 inset-x-4 sm:inset-x-6 flex items-center gap-3 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden">
+          <p className="font-heading text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#c9a227]">
+            Assembly &amp; Installation
+          </p>
+          <span className="h-px w-10 bg-[#c9a227]/70" aria-hidden />
+        </div>
+
+        <div
+          className="relative -z-10 -mx-4 sm:-mx-6 h-[min(115vw,29rem)] sm:h-[34rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:absolute [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:inset-y-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:right-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:m-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:h-full [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:aspect-[3/2] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:w-auto [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[62%] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[57%] [@media(min-width:80rem)_and_(min-aspect-ratio:1/1)]:max-w-[64%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_22%,black_50%)]"
+          aria-hidden
+        >
+          <Image
+            src={HERO_IMAGE_SRC}
+            alt=""
+            fill
+            className="object-cover object-[65%_40%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:object-[72%_40%]"
+            sizes="(max-width: 768px) 100vw, 64vw"
+            priority
+          />
+          <div
+            className="absolute inset-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden"
+            style={{
+              background: [
+                "linear-gradient(180deg, #141c2b 0%, rgba(20,28,43,0.6) 9%, rgba(20,28,43,0) 24%, rgba(20,28,43,0) 54%, rgba(20,28,43,0.55) 70%, rgba(20,28,43,0.9) 85%, #141c2b 97%)",
+                "linear-gradient(90deg, rgba(20,28,43,0.45) 0%, rgba(20,28,43,0) 18%, rgba(20,28,43,0) 82%, rgba(20,28,43,0.45) 100%)",
+              ].join(", "),
+            }}
+          />
+          <div
+            className="absolute inset-0 hidden [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:block"
+            style={{
+              background: "linear-gradient(0deg, rgba(20,28,43,0.35) 0%, rgba(20,28,43,0) 30%)",
+            }}
+          />
+        </div>
+
+        <div className="relative -mt-[6.25rem] sm:-mt-[8rem] max-w-xl [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[27rem] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[31rem]">
+          <div className="hidden items-center gap-3 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:flex">
             <p className="font-heading text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#c9a227]">
               Assembly &amp; Installation
             </p>
-            <span className="hidden sm:block h-px w-10 bg-[#c9a227]/70" aria-hidden />
+            <span className="h-px w-10 bg-[#c9a227]/70" aria-hidden />
           </div>
 
           <h1
             id="assembly-hero-heading"
-            className="mt-3 lg:mt-4 font-heading text-[1.85rem] sm:text-[2.1rem] lg:text-[2.5rem] text-white font-semibold leading-[1.1]"
+            className="font-heading text-[1.9rem] sm:text-[2.3rem] lg:text-[2.5rem] text-white font-semibold leading-[1.1] [text-shadow:0_2px_18px_rgba(20,28,43,0.55)] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-3 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:text-[2.1rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:[text-shadow:none] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:mt-4 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:text-[2.5rem]"
           >
-            Professional Assembly.
+            Professional <br className="sm:hidden" />
+            Assembly.
             <br />
             <span className="text-[#c9a227]">Done Right.</span>
           </h1>
 
-          <p className="mt-3 lg:mt-4 text-sm lg:text-[15px] text-white/85 leading-relaxed max-w-md">
+          <p className="mt-3 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:mt-4 text-sm sm:text-[15px] text-white/85 leading-relaxed max-w-md [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:text-sm [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:text-[15px]">
             Furniture, storage systems, office setups, wall-mounted installations, and multi-unit projects — assembled
             with precision, care, and professional execution.
           </p>
 
-          <div className="mt-5 lg:mt-6 flex flex-col sm:flex-row gap-2.5 sm:gap-3">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-5 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:mt-6">
             <SmoothScrollLink
               targetId="assembly-estimator"
               className={`${primaryCtaClass} md:max-lg:px-4 md:whitespace-nowrap`}
@@ -114,38 +151,11 @@ export function AssemblyHero() {
           </div>
         </div>
 
-        <div
-          className="relative -z-10 -mx-4 sm:-mx-6 mt-7 aspect-[3/2] max-h-[420px] w-[calc(100%+2rem)] sm:w-[calc(100%+3rem)] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:absolute [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:inset-y-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:right-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:m-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:h-full [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-h-none [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:w-auto [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[62%] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[57%] [@media(min-width:80rem)_and_(min-aspect-ratio:1/1)]:max-w-[64%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_22%,black_50%)]"
-          aria-hidden
-        >
-          <Image
-            src={HERO_IMAGE_SRC}
-            alt=""
-            fill
-            className="object-cover object-[72%_40%]"
-            sizes="(max-width: 768px) 100vw, 64vw"
-            priority
-          />
-          <div
-            className="absolute inset-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden"
-            style={{
-              background:
-                "linear-gradient(180deg, #141c2b 0%, rgba(20,28,43,0) 16%, rgba(20,28,43,0) 70%, #141c2b 100%)",
-            }}
-          />
-          <div
-            className="absolute inset-0 hidden [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:block"
-            style={{
-              background: "linear-gradient(0deg, rgba(20,28,43,0.35) 0%, rgba(20,28,43,0) 30%)",
-            }}
-          />
-        </div>
-
-        <ul className="relative mt-5 list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-0 border-t border-white/15 pt-4 max-w-[46rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-7 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[29rem] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[40rem]">
+        <ul className="relative mt-8 list-none m-0 p-0 grid grid-cols-1 sm:grid-cols-3 divide-y divide-white/10 sm:divide-y-0 border-t border-white/15 sm:pt-5 max-w-[46rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-7 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:pt-4 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[29rem] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[40rem]">
           {TRUST_ITEMS.map((item, index) => (
             <li
               key={item.title}
-              className={`flex items-start gap-2.5 min-w-0 ${
+              className={`flex items-start gap-3 sm:gap-2.5 min-w-0 py-3.5 sm:py-0 ${
                 index > 0 ? "sm:pl-4 lg:pl-5 sm:border-l sm:border-[#c9a227]/35" : "sm:pr-4 lg:pr-5"
               } ${index === 1 ? "sm:pr-4 lg:pr-5" : ""}`}
             >
@@ -153,10 +163,10 @@ export function AssemblyHero() {
                 <TrustIcon type={item.icon} />
               </span>
               <span className="min-w-0">
-                <span className="block font-heading text-[12px] lg:text-[13px] font-semibold text-white leading-snug">
+                <span className="block font-heading text-[13px] sm:text-[12px] lg:text-[13px] font-semibold text-white leading-snug">
                   {item.title}
                 </span>
-                <span className="mt-0.5 block [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:block text-[12px] text-white/72 leading-snug">
+                <span className="mt-0.5 block [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:block text-[13px] sm:text-[12px] text-white/72 leading-snug">
                   {item.support}
                 </span>
               </span>
