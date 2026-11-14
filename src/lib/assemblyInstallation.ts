@@ -1,8 +1,4 @@
-import {
-  ASSEMBLY_BUILT_FOR_SCALE_IMAGE,
-  ASSEMBLY_PROFESSIONAL_STANDARDS_IMAGE,
-  ASSEMBLY_SERVICE_IMAGES,
-} from "./assemblyImages";
+import { ASSEMBLY_PROFESSIONAL_STANDARDS_IMAGE, ASSEMBLY_SERVICE_IMAGES } from "./assemblyImages";
 
 export const ASSEMBLY_INTRO = {
   tagline: "Scalable. Reliable. Platform-Ready Assembly Solutions.",
@@ -107,26 +103,6 @@ export const ASSEMBLY_CABINET_FEATURE = {
   image: ASSEMBLY_SERVICE_IMAGES.cabinetInstall,
   imageAlt: "Technician leveling white kitchen cabinets during installation",
   caption: "Kitchen, vanity, and built-in cabinet assembly with professional leveling and alignment.",
-} as const;
-
-export const ASSEMBLY_SCALE = {
-  eyebrow: "BUILT FOR SCALE",
-  title: "Built for High-Volume and Multi-Job Platforms",
-  image: ASSEMBLY_BUILT_FOR_SCALE_IMAGE,
-  imageAlt:
-    "Tamay Enterprises assembly team of six technicians in a professional workshop, ready for high-volume projects",
-  intro:
-    "Unlike individual service providers, Tamay Enterprises operates as a structured company with team-based execution and standardized workflows.",
-  subheading: "Our assembly and installation services are designed to support partners that require:",
-  requirements: [
-    "Multiple technicians available based on demand",
-    "Parallel job execution across locations",
-    "Structured scheduling and dispatch coordination",
-    "Consistent quality standards",
-    "Clear communication and documentation",
-  ],
-  closing:
-    "This approach allows us to deliver reliable results even in high-volume environments.",
 } as const;
 
 export const ASSEMBLY_STANDARDS = {

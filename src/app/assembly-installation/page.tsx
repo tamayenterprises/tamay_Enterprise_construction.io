@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AssemblyBuiltForScaleSection } from "@/components/assembly/AssemblyBuiltForScaleSection";
 import { AssemblyEstimatorSection } from "@/components/assembly/AssemblyEstimatorSection";
 import { AssemblyHero } from "@/components/assembly/AssemblyHero";
 import { AssemblyServicesSection } from "@/components/assembly/AssemblyServicesSection";
@@ -10,7 +11,6 @@ import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppo
 import { SitePhoto } from "@/components/images/SitePhoto";
 import {
   ASSEMBLY_INTRO,
-  ASSEMBLY_SCALE,
   ASSEMBLY_STANDARDS,
   ASSEMBLY_WHY_PARTNERS,
 } from "@/lib/assemblyInstallation";
@@ -64,41 +64,7 @@ export default function AssemblyInstallationPage() {
 
       <AssemblyEstimatorSection />
 
-      <section className="bg-tamay-primary text-white">
-        <figure className="relative w-full aspect-[1024/282]">
-          <SitePhoto
-            slot="assembly.builtForScale"
-            alt={ASSEMBLY_SCALE.imageAlt}
-            className="object-cover object-top"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-tamay-primary/35" aria-hidden />
-        </figure>
-        <div className="py-14 px-4 max-w-3xl mx-auto">
-          <SiteText k="assembly.scale.eyebrow" as="p" className="text-sm font-semibold tracking-widest uppercase text-tamay-accent text-center mb-2">
-            {ASSEMBLY_SCALE.eyebrow}
-          </SiteText>
-          <SiteText k="assembly.scale.title" as="h2" className="font-heading text-2xl md:text-3xl font-bold text-center mb-6">
-            {ASSEMBLY_SCALE.title}
-          </SiteText>
-          <SiteText k="assembly.scale.intro" as="p" className="text-gray-100 text-center leading-relaxed mb-6" multiline>
-            {ASSEMBLY_SCALE.intro}
-          </SiteText>
-          <SiteText k="assembly.scale.subheading" as="p" className="text-gray-100 text-center font-semibold mb-4">
-            {ASSEMBLY_SCALE.subheading}
-          </SiteText>
-          <ol className="max-w-xl mx-auto space-y-3 text-gray-100 list-decimal pl-6">
-            {ASSEMBLY_SCALE.requirements.map((item, index) => (
-              <SiteText k={`assembly.scale.item${index + 1}`} as="li" key={`assembly.scale.item${index + 1}`}>
-                {item}
-              </SiteText>
-            ))}
-          </ol>
-          <SiteText k="assembly.scale.closing" as="p" className="text-gray-100 text-center leading-relaxed mt-8" multiline>
-            {ASSEMBLY_SCALE.closing}
-          </SiteText>
-        </div>
-      </section>
+      <AssemblyBuiltForScaleSection />
 
       <section className="py-14 max-w-5xl mx-auto px-4">
         <figure className="relative aspect-[16/9] w-full mb-10 overflow-hidden rounded-sm">
