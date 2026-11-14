@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { AssemblyBuiltForScaleSection } from "@/components/assembly/AssemblyBuiltForScaleSection";
 import { AssemblyEstimatorSection } from "@/components/assembly/AssemblyEstimatorSection";
+import { AssemblyFinalCTA } from "@/components/assembly/AssemblyFinalCTA";
 import { AssemblyHero } from "@/components/assembly/AssemblyHero";
 import { AssemblyHowItWorksSection } from "@/components/assembly/AssemblyHowItWorksSection";
 import { AssemblyServicesSection } from "@/components/assembly/AssemblyServicesSection";
 import { AssemblyWhoWeSupportSection } from "@/components/assembly/AssemblyWhoWeSupportSection";
-import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
-import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppointmentSection";
 import { ASSEMBLY_INTRO } from "@/lib/assemblyInstallation";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 import { SiteText } from "@/components/copy/SiteText";
@@ -63,9 +62,7 @@ export default function AssemblyInstallationPage() {
 
       <AssemblyHowItWorksSection />
 
-      <ServiceAppointmentSection serviceId="assembly-installation" />
-
-      <SiteContactSection />
+      <AssemblyFinalCTA />
     </>
   );
 }
