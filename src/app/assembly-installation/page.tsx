@@ -72,21 +72,37 @@ export default function AssemblyInstallationPage() {
     <>
       <AssemblyHero />
 
-      <section className="py-14 max-w-4xl mx-auto px-4">
-        <SiteText k="assembly.intro.heading" as="h2" className="font-heading text-2xl md:text-3xl text-tamay-primary font-bold text-center mb-6">
-          {ASSEMBLY_INTRO.heading}
-        </SiteText>
-        <div className="space-y-4 text-gray-600 text-center leading-relaxed">
-          {ASSEMBLY_INTRO.paragraphs.map((p, index) => (
-            <SiteText k={`assembly.intro.body${index + 1}`} as="p" key={`assembly.intro.body${index + 1}`} multiline>
-              {p}
+      <section className="bg-[#faf8f5]" aria-labelledby="assembly-about-heading">
+        <div className="max-w-[980px] mx-auto px-5 sm:px-8 lg:px-10 py-11 sm:py-14 lg:py-16 text-center">
+          <div className="flex items-center justify-center gap-3">
+            <span className="hidden sm:block h-px w-8 bg-tamay-accent/70" aria-hidden />
+            <SiteText
+              k="assembly.intro.eyebrow"
+              as="p"
+              className="font-heading text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-tamay-accent"
+            >
+              About Us
             </SiteText>
-          ))}
-        </div>
-        <div className="text-center mt-8">
-          <Button href="#contact" variant="accent">
-            <SiteText k="assembly.intro.cta">Partner With Our Team</SiteText>
-          </Button>
+            <span className="hidden sm:block h-px w-8 bg-tamay-accent/70" aria-hidden />
+          </div>
+          <h2
+            id="assembly-about-heading"
+            className="mt-4 sm:mt-5 mx-auto max-w-[40rem] lg:max-w-[52rem] font-heading text-[1.55rem] sm:text-[2rem] lg:text-[2.35rem] font-normal leading-[1.18] text-[#0b1628] text-balance"
+          >
+            <SiteText k="assembly.intro.heading">{ASSEMBLY_INTRO.heading}</SiteText>
+          </h2>
+          <div className="mt-5 sm:mt-6 mx-auto max-w-[40rem] lg:max-w-[44rem] space-y-4 text-[15px] sm:text-base text-[#0b1628]/82 leading-[1.7]">
+            {ASSEMBLY_INTRO.paragraphs.map((p, index) => (
+              <SiteText k={`assembly.intro.body${index + 1}`} as="p" key={`assembly.intro.body${index + 1}`} multiline>
+                {p}
+              </SiteText>
+            ))}
+          </div>
+          <div className="mt-7 sm:mt-8">
+            <Button href="#contact" variant="accent">
+              <SiteText k="assembly.intro.cta">Partner With Our Team</SiteText>
+            </Button>
+          </div>
         </div>
       </section>
 
