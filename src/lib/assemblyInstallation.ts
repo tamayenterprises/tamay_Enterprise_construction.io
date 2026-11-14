@@ -1,4 +1,4 @@
-import { ASSEMBLY_PROFESSIONAL_STANDARDS_IMAGE, ASSEMBLY_SERVICE_IMAGES } from "./assemblyImages";
+import { ASSEMBLY_SERVICE_IMAGES } from "./assemblyImages";
 
 export const ASSEMBLY_INTRO = {
   tagline: "Scalable. Reliable. Platform-Ready Assembly Solutions.",
@@ -103,36 +103,6 @@ export const ASSEMBLY_CABINET_FEATURE = {
   image: ASSEMBLY_SERVICE_IMAGES.cabinetInstall,
   imageAlt: "Technician leveling white kitchen cabinets during installation",
   caption: "Kitchen, vanity, and built-in cabinet assembly with professional leveling and alignment.",
-} as const;
-
-export const ASSEMBLY_STANDARDS = {
-  eyebrow: "PROFESSIONAL STANDARDS & COMPLIANCE",
-  title: "Professional Standards, Safety, and Accountability",
-  image: ASSEMBLY_PROFESSIONAL_STANDARDS_IMAGE,
-  imageAlt:
-    "Business ethics and compliance icons representing professional standards, accountability, and trust",
-  intro:
-    "We understand the importance of trust, brand protection, and professionalism when working inside client homes and managed properties.",
-  items: [
-    "Registered and insured company",
-    "Experienced assembly technicians",
-    "Professional appearance and conduct",
-    "Respect for client property and furnishings",
-    "Experience working in occupied homes and managed environments",
-    "Photo documentation available when required",
-  ],
-} as const;
-
-export const ASSEMBLY_WHY_PARTNERS = {
-  eyebrow: "WHY PARTNERS CHOOSE US",
-  title: "Why Partners Choose Tamay Enterprises",
-  lead: "Reliable execution within scheduled service windows",
-  items: [
-    "Ability to scale for increased volume and demand",
-    "One structured partner instead of multiple individuals",
-    "Clear accountability and professional communication",
-    "Long-term partnership mindset",
-  ],
 } as const;
 
 export const ASSEMBLY_IMPORTANT_NOTE =

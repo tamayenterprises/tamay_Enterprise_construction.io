@@ -5,16 +5,10 @@ import { AssemblyHero } from "@/components/assembly/AssemblyHero";
 import { AssemblyHowItWorksSection } from "@/components/assembly/AssemblyHowItWorksSection";
 import { AssemblyServicesSection } from "@/components/assembly/AssemblyServicesSection";
 import { AssemblyWhoWeSupportSection } from "@/components/assembly/AssemblyWhoWeSupportSection";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
 import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppointmentSection";
-import { SitePhoto } from "@/components/images/SitePhoto";
-import {
-  ASSEMBLY_INTRO,
-  ASSEMBLY_STANDARDS,
-  ASSEMBLY_WHY_PARTNERS,
-} from "@/lib/assemblyInstallation";
+import { ASSEMBLY_INTRO } from "@/lib/assemblyInstallation";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 import { SiteText } from "@/components/copy/SiteText";
 
@@ -66,55 +60,6 @@ export default function AssemblyInstallationPage() {
       <AssemblyEstimatorSection />
 
       <AssemblyBuiltForScaleSection />
-
-      <section className="py-14 max-w-5xl mx-auto px-4">
-        <figure className="relative aspect-[16/9] w-full mb-10 overflow-hidden rounded-sm">
-          <SitePhoto
-            slot="assembly.professionalStandards"
-            alt={ASSEMBLY_STANDARDS.imageAlt}
-            className="object-cover object-center"
-            sizes="(max-width: 1024px) 100vw, 1024px"
-          />
-        </figure>
-        <SectionHeading
-          copyKey="assembly.standards"
-          eyebrow={ASSEMBLY_STANDARDS.eyebrow}
-          title={ASSEMBLY_STANDARDS.title}
-          subtitle={ASSEMBLY_STANDARDS.intro}
-        />
-        <ul className="max-w-xl mx-auto text-gray-600 space-y-2 list-disc pl-5 -mt-2">
-          {ASSEMBLY_STANDARDS.items.map((item, index) => (
-            <SiteText k={`assembly.standards.item${index + 1}`} as="li" key={`assembly.standards.item${index + 1}`}>
-              {item}
-            </SiteText>
-          ))}
-        </ul>
-        <div className="text-center mt-8">
-          <Button href="#contact" variant="outline">
-            <SiteText k="assembly.standards.cta">Partner With Us</SiteText>
-          </Button>
-        </div>
-      </section>
-
-      <section className="py-14 bg-gray-50 px-4 border-t border-gray-200">
-        <div className="max-w-3xl mx-auto">
-          <SectionHeading
-            copyKey="assembly.partners"
-            eyebrow={ASSEMBLY_WHY_PARTNERS.eyebrow}
-            title={ASSEMBLY_WHY_PARTNERS.title}
-          />
-          <SiteText k="assembly.partners.lead" as="p" className="text-gray-700 text-center font-semibold -mt-2 mb-4">
-            {ASSEMBLY_WHY_PARTNERS.lead}
-          </SiteText>
-          <ul className="max-w-xl mx-auto text-gray-600 space-y-2 list-disc pl-5">
-            {ASSEMBLY_WHY_PARTNERS.items.map((item, index) => (
-              <SiteText k={`assembly.partners.item${index + 1}`} as="li" key={`assembly.partners.item${index + 1}`}>
-                {item}
-              </SiteText>
-            ))}
-          </ul>
-        </div>
-      </section>
 
       <AssemblyHowItWorksSection />
 
