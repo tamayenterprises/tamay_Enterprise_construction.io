@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AssemblyHero } from "@/components/assembly/AssemblyHero";
+import { AssemblyWhoWeSupportSection } from "@/components/assembly/AssemblyWhoWeSupportSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { Button } from "@/components/ui/Button";
@@ -13,7 +14,6 @@ import {
   ASSEMBLY_SCALE,
   ASSEMBLY_SERVICE_GROUPS,
   ASSEMBLY_STANDARDS,
-  ASSEMBLY_WHO_WE_SUPPORT,
   ASSEMBLY_WHY_PARTNERS,
 } from "@/lib/assemblyInstallation";
 import { appointmentScheduleHref } from "@/lib/onlineAppointments";
@@ -106,31 +106,7 @@ export default function AssemblyInstallationPage() {
         </div>
       </section>
 
-      <section className="py-14 bg-gray-50 px-4 border-y border-gray-200">
-        <div className="max-w-4xl mx-auto">
-          <SectionHeading
-            copyKey="assembly.support"
-            eyebrow={ASSEMBLY_WHO_WE_SUPPORT.eyebrow}
-            title={ASSEMBLY_WHO_WE_SUPPORT.title}
-          />
-          <SiteText k="assembly.support.intro" as="p" className="text-gray-600 text-center leading-relaxed -mt-2 mb-6" multiline>
-            {ASSEMBLY_WHO_WE_SUPPORT.intro}
-          </SiteText>
-          <SiteText k="assembly.support.listLabel" as="p" className="text-sm font-semibold text-tamay-primary text-center mb-3">
-            We commonly support:
-          </SiteText>
-          <ul className="max-w-xl mx-auto text-gray-600 space-y-2 list-disc pl-5">
-            {ASSEMBLY_WHO_WE_SUPPORT.audiences.map((item, index) => (
-              <SiteText k={`assembly.support.item${index + 1}`} as="li" key={`assembly.support.item${index + 1}`}>
-                {item}
-              </SiteText>
-            ))}
-          </ul>
-          <SiteText k="assembly.support.closing" as="p" className="text-gray-600 text-center leading-relaxed mt-6" multiline>
-            {ASSEMBLY_WHO_WE_SUPPORT.closing}
-          </SiteText>
-        </div>
-      </section>
+      <AssemblyWhoWeSupportSection />
 
       <section className="py-14 max-w-6xl mx-auto px-4">
         <SectionHeading

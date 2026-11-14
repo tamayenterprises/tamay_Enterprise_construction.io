@@ -13,22 +13,6 @@ export const ASSEMBLY_INTRO = {
   ],
 } as const;
 
-export const ASSEMBLY_WHO_WE_SUPPORT = {
-  eyebrow: "WHO WE SUPPORT",
-  title: "Our Assembly & Installation Services Are Designed For",
-  intro:
-    "Our professional assembly and installation services are built to support partners and clients who require dependable execution, clear communication, and the ability to manage multiple projects simultaneously.",
-  audiences: [
-    "Furniture retailers and logistics partners",
-    "Marketplace-driven service platforms",
-    "Property managers and multi-unit residential properties",
-    "Short-term rentals and furnished apartments",
-    "Real estate staging, turnovers, and model units",
-  ],
-  closing:
-    "This flexible structure allows us to adapt to different project environments while maintaining consistent service standards.",
-} as const;
-
 export const ASSEMBLY_SERVICE_GROUPS = [
   {
     title: "Furniture Assembly Services",
