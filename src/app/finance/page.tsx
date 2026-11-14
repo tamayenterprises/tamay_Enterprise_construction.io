@@ -1,28 +1,19 @@
 import type { Metadata } from "next";
-import { HeroBanner } from "@/components/ui/HeroBanner";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
+import { FinanceHero } from "@/components/finance/FinanceHero";
 import { FinancingPromoCard } from "@/components/finance/FinancingPromoCard";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { FINANCE, SITE } from "@/lib/site";
-import { getResolvedSiteMedia } from "@/lib/siteImages";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 import { SiteText } from "@/components/copy/SiteText";
 
 export const metadata: Metadata = buildSocialMetadata("finance");
 
-export default async function FinancePage() {
-  const { images } = await getResolvedSiteMedia();
+export default function FinancePage() {
   return (
     <>
-      <HeroBanner
-        image={images.financeHero}
-        slotKey="financeHero"
-        copyKey="finance.hero"
-        title={FINANCE.title}
-        subtitle="Build now. Pay over time."
-        height="medium"
-      />
+      <FinanceHero />
 
       <section className="py-14 max-w-4xl mx-auto px-4 text-center">
         <SectionHeading copyKey="finance.intro" title={FINANCE.headline} subtitle={FINANCE.intro} />

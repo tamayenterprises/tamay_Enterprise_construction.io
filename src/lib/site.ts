@@ -36,7 +36,6 @@ export const SITE = {
 } as const;
 
 export const FINANCE = {
-  title: "Finance",
   headline: "Flexible Financing for Construction & Home Projects",
   intro:
     "Tamay Enterprises offers financing options to help homeowners and property owners move forward with renovations, repairs, and improvement projects without delaying the work. Build now and pay over time with plans designed to fit a range of project sizes and budgets.",
