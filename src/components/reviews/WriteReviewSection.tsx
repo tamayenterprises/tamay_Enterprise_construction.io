@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import { submitReview, type ReviewSubmission } from "@/lib/reviewSubmission";
 
 function StarPicker({
@@ -13,7 +12,7 @@ function StarPicker({
   onChange: (rating: number) => void;
 }) {
   return (
-    <div className="flex justify-center sm:justify-start gap-1" role="radiogroup" aria-label="Rating">
+    <div className="flex gap-1" role="radiogroup" aria-label="Rating">
       {Array.from({ length: 5 }).map((_, index) => {
         const star = index + 1;
         return (
@@ -24,8 +23,8 @@ function StarPicker({
             aria-checked={value === star}
             aria-label={`${star} star${star === 1 ? "" : "s"}`}
             onClick={() => onChange(star)}
-            className={`text-2xl transition-colors ${
-              star <= value ? "text-tamay-accent" : "text-gray-300 hover:text-tamay-accent/60"
+            className={`inline-flex h-11 w-10 items-center justify-center rounded-md text-[1.75rem] leading-none transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-tamay-accent ${
+              star <= value ? "text-tamay-accent" : "text-[#0b1628]/20 hover:text-tamay-accent/60"
             }`}
           >
             ★
@@ -42,6 +41,20 @@ const emptyForm: ReviewSubmission = {
   rating: 5,
   text: "",
 };
+
+const labelClass = "block text-sm font-semibold text-[#0b1628] mb-1.5";
+const inputClass =
+  "w-full rounded-md border border-[#0b1628]/15 bg-white px-3.5 py-2.5 text-[15px] text-[#0b1628] placeholder:text-[#0b1628]/40 transition-colors focus:outline-none focus:border-tamay-accent focus:ring-2 focus:ring-tamay-accent/35";
+const goldButtonClass =
+  "inline-flex shrink-0 items-center justify-center whitespace-nowrap min-h-12 w-full sm:w-auto px-8 font-bold text-sm tracking-wide transition-colors bg-tamay-accent hover:bg-tamay-accent-hover text-[#141c2b] disabled:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent";
+
+function RequiredMark() {
+  return (
+    <span className="text-tamay-accent" aria-hidden>
+      *
+    </span>
+  );
+}
 
 export function WriteReviewSection() {
   const { user } = useAuth();
@@ -94,106 +107,122 @@ export function WriteReviewSection() {
   };
 
   return (
-    <section id="write-review" className="py-14 bg-gray-50 px-4">
-      <div className="max-w-2xl mx-auto">
-        <SectionHeading
-          copyKey="reviews.write"
-          title="Write A Review"
-          subtitle="Share your experience with Tamay Enterprises. Approved reviews appear in our review carousel alongside our Google reviews."
-        />
-
-        <div className="mt-8 bg-white border border-gray-200 shadow-md rounded-sm p-6 sm:p-8">
-          {submitted ? (
-            <div className="text-center space-y-4">
-              <p className="font-heading text-xl text-tamay-primary font-semibold">Thank you!</p>
-              <p className="text-gray-600 leading-relaxed">
-                Your review has been submitted. Once our team approves it, it will appear in the
-                review carousel on this page.
+    <section id="write-review" className="bg-[#f7f4ef] scroll-mt-24" aria-labelledby="write-review-heading">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-12 sm:py-14 lg:py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] gap-8 lg:gap-14 lg:items-start">
+          <div className="max-w-xl lg:pt-2">
+            <div className="flex items-center gap-3">
+              <p className="font-heading text-[10px] sm:text-[11px] font-semibold tracking-[0.28em] uppercase text-tamay-accent">
+                Share Your Experience
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSubmitted(false);
-                  setForm(emptyForm);
-                }}
-                className="inline-block rounded-full bg-tamay-primary px-8 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white hover:bg-tamay-primary-dark transition-colors"
-              >
-                Write Another Review
-              </button>
+              <span className="h-px w-8 bg-tamay-accent/70" aria-hidden />
             </div>
-          ) : (
-            <form className="space-y-5" onSubmit={handleSubmit}>
-              <div>
-                <label htmlFor="review-name" className="block text-sm font-semibold text-gray-700 mb-1">
-                  Your Name<span className="text-red-600">*</span>
-                </label>
-                <input
-                  id="review-name"
-                  name="name"
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={(event) => update({ name: event.target.value })}
-                  className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tamay-primary"
-                />
-              </div>
+            <h2
+              id="write-review-heading"
+              className="mt-4 font-heading text-[1.55rem] sm:text-[2rem] lg:text-[2.35rem] font-normal leading-[1.18] text-[#0b1628] text-balance"
+            >
+              Share Your Experience
+            </h2>
+            <p className="mt-3.5 text-[15px] sm:text-base text-[#0b1628]/75 leading-[1.7]">
+              Have you worked with Tamay Enterprises? We’d love to hear about your experience.
+            </p>
+            <div className="mt-6 h-px w-16 bg-tamay-accent/70" aria-hidden />
+          </div>
 
-              <div>
-                <label htmlFor="review-email" className="block text-sm font-semibold text-gray-700 mb-1">
-                  Email (optional)
-                </label>
-                <input
-                  id="review-email"
-                  name="email"
-                  type="email"
-                  value={form.email}
-                  onChange={(event) => update({ email: event.target.value })}
-                  className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tamay-primary"
-                />
-              </div>
-
-              <div>
-                <p className="block text-sm font-semibold text-gray-700 mb-2">
-                  Rating<span className="text-red-600">*</span>
+          <div className="rounded-xl bg-white ring-1 ring-[#0b1628]/[0.07] shadow-[0_10px_28px_rgba(11,22,40,0.07)] p-5 sm:p-7 lg:p-8">
+            {submitted ? (
+              <div className="text-center space-y-4 py-4" role="status">
+                <p className="font-heading text-xl text-[#0b1628] font-semibold">Thank you!</p>
+                <p className="text-[15px] text-[#0b1628]/75 leading-relaxed">
+                  Your review has been submitted. Once our team approves it, it will appear in the reviews on this
+                  page.
                 </p>
-                <StarPicker value={form.rating} onChange={(rating) => update({ rating })} />
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setForm(emptyForm);
+                  }}
+                  className={goldButtonClass}
+                >
+                  Write Another Review
+                </button>
               </div>
+            ) : (
+              <form className="space-y-5" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="review-name" className={labelClass}>
+                      Your Name <RequiredMark />
+                    </label>
+                    <input
+                      id="review-name"
+                      name="name"
+                      type="text"
+                      required
+                      autoComplete="name"
+                      value={form.name}
+                      onChange={(event) => update({ name: event.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
 
-              <div>
-                <label htmlFor="review-text" className="block text-sm font-semibold text-gray-700 mb-1">
-                  Your Review<span className="text-red-600">*</span>
-                </label>
-                <textarea
-                  id="review-text"
-                  name="review"
-                  rows={5}
-                  required
-                  value={form.text}
-                  onChange={(event) => update({ text: event.target.value })}
-                  className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-tamay-primary"
-                  placeholder="Tell us about your project experience..."
-                />
-              </div>
+                  <div>
+                    <label htmlFor="review-email" className={labelClass}>
+                      Email (optional)
+                    </label>
+                    <input
+                      id="review-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      value={form.email}
+                      onChange={(event) => update({ email: event.target.value })}
+                      className={inputClass}
+                    />
+                  </div>
+                </div>
 
-              {error && (
-                <p className="text-sm text-red-600" role="alert">
-                  {error}
-                </p>
-              )}
+                <div>
+                  <p className={labelClass}>
+                    Rating <RequiredMark />
+                  </p>
+                  <StarPicker value={form.rating} onChange={(rating) => update({ rating })} />
+                </div>
 
-              <button
-                type="submit"
-                disabled={submitting}
-                className="w-full bg-tamay-primary hover:bg-tamay-primary-dark disabled:opacity-60 text-white font-bold py-3 text-sm tracking-wide transition-colors"
-              >
-                {submitting ? "Submitting..." : "Submit Review"}
-              </button>
+                <div>
+                  <label htmlFor="review-text" className={labelClass}>
+                    Your Review <RequiredMark />
+                  </label>
+                  <textarea
+                    id="review-text"
+                    name="review"
+                    rows={5}
+                    required
+                    value={form.text}
+                    onChange={(event) => update({ text: event.target.value })}
+                    className={inputClass}
+                    placeholder="Tell us about your project experience..."
+                  />
+                </div>
 
-              <p className="text-xs text-gray-500 leading-relaxed">
-                Reviews are moderated before they appear publicly on our website.
-              </p>
-            </form>
-          )}
+                {error && (
+                  <p className="text-sm text-red-700" role="alert">
+                    {error}
+                  </p>
+                )}
+
+                <div className="flex flex-col sm:flex-row sm:items-center gap-4 pt-1">
+                  <button type="submit" disabled={submitting} className={goldButtonClass}>
+                    {submitting ? "Submitting..." : "Submit Review"}
+                  </button>
+                  <p className="text-xs text-[#0b1628]/60 leading-relaxed">
+                    Reviews are moderated before they appear publicly on our website.
+                  </p>
+                </div>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>

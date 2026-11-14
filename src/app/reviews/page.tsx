@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { ReviewsSection } from "@/components/home/ReviewsSection";
+import { ReviewsFeaturedSection } from "@/components/reviews/ReviewsFeaturedSection";
+import { ReviewsFinalCTA } from "@/components/reviews/ReviewsFinalCTA";
+import { ReviewsHero } from "@/components/reviews/ReviewsHero";
 import { ReviewsVideoTestimonialsSection } from "@/components/reviews/ReviewsVideoTestimonialsSection";
 import { WriteReviewSection } from "@/components/reviews/WriteReviewSection";
-import { SiteContactSection } from "@/components/ui/SiteContactSection";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 
 export const metadata: Metadata = buildSocialMetadata("reviews");
@@ -10,13 +11,15 @@ export const metadata: Metadata = buildSocialMetadata("reviews");
 export default function ReviewsPage() {
   return (
     <>
-      <ReviewsSection />
+      <ReviewsHero />
 
-      <WriteReviewSection />
+      <ReviewsFeaturedSection />
 
       <ReviewsVideoTestimonialsSection />
 
-      <SiteContactSection />
+      <WriteReviewSection />
+
+      <ReviewsFinalCTA />
     </>
   );
 }
