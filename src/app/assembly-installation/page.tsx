@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AssemblyBuiltForScaleSection } from "@/components/assembly/AssemblyBuiltForScaleSection";
 import { AssemblyEstimatorSection } from "@/components/assembly/AssemblyEstimatorSection";
 import { AssemblyHero } from "@/components/assembly/AssemblyHero";
+import { AssemblyHowItWorksSection } from "@/components/assembly/AssemblyHowItWorksSection";
 import { AssemblyServicesSection } from "@/components/assembly/AssemblyServicesSection";
 import { AssemblyWhoWeSupportSection } from "@/components/assembly/AssemblyWhoWeSupportSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -114,6 +115,8 @@ export default function AssemblyInstallationPage() {
           </ul>
         </div>
       </section>
+
+      <AssemblyHowItWorksSection />
 
       <ServiceAppointmentSection serviceId="assembly-installation" />
 
