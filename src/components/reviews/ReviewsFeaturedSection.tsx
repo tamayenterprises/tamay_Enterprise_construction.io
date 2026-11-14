@@ -99,7 +99,7 @@ function ReviewCard({ review }: { review: Review }) {
 
 const cardSlotClass = "w-full md:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)]";
 
-/** Reviews — 3 featured Google reviews + one expandable list of all remaining reviews (closed by default). */
+/** Reviews — featured Google reviews (1 on mobile, 3 from md) + one "View More" list of the rest (closed by default). */
 export function ReviewsFeaturedSection() {
   const listId = `${useId()}-all-reviews`;
   const [siteReviews, setSiteReviews] = useState<Review[]>([]);
@@ -142,8 +142,11 @@ export function ReviewsFeaturedSection() {
         </div>
 
         <ul className="mt-9 sm:mt-10 list-none m-0 p-0 flex flex-wrap justify-center gap-6">
-          {FEATURED_REVIEWS.map((review) => (
-            <li key={review.id} className={cardSlotClass}>
+          {FEATURED_REVIEWS.map((review, index) => (
+            <li
+              key={review.id}
+              className={`${cardSlotClass}${index > 0 && !expanded ? " hidden md:block" : ""}`}
+            >
               <ReviewCard review={review} />
             </li>
           ))}
@@ -159,7 +162,7 @@ export function ReviewsFeaturedSection() {
                 aria-controls={listId}
                 className="group inline-flex min-h-11 items-center gap-2.5 rounded-full border border-tamay-accent/70 px-6 py-2.5 font-heading text-[12px] sm:text-[13px] font-semibold tracking-[0.14em] uppercase text-[#0b1628] transition-colors hover:bg-tamay-accent focus:outline-none focus-visible:ring-2 focus-visible:ring-tamay-accent focus-visible:ring-offset-4 focus-visible:ring-offset-[#faf8f5]"
               >
-                {expanded ? "Hide Reviews" : "View All Reviews"}
+                {expanded ? "View Less Reviews" : "View More Reviews"}
                 <span aria-hidden className="text-base leading-none text-tamay-accent group-hover:text-[#0b1628]">
                   {expanded ? "−" : "+"}
                 </span>

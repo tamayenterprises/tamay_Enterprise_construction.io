@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { GOOGLE_REVIEWS_URL } from "@/lib/reviews";
 
-const HERO_IMAGE_SRC = "/gallery/gallery-hero-kitchen.png";
+const HERO_IMAGE_SRC = "/reviews/reviews-hero-consultation.jpg";
 
 const primaryCtaClass =
   "inline-flex items-center justify-center gap-2 min-h-11 font-bold text-sm tracking-wide px-6 py-3 transition-colors text-center bg-tamay-accent hover:bg-tamay-accent-hover text-[#141c2b] w-full sm:w-auto focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tamay-accent";
@@ -38,21 +38,21 @@ export function ReviewsHero() {
     >
       <div className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 pb-10 sm:pb-12 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:static [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:py-12 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:py-14">
         <div className="absolute z-10 top-6 sm:top-8 inset-x-4 sm:inset-x-6 flex items-center gap-3 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden">
-          <p className="font-heading text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#c9a227]">
+          <p className="font-heading text-[11px] sm:text-xs font-bold tracking-[0.2em] uppercase text-[#c9a227] [text-shadow:0_1px_10px_rgba(20,28,43,0.9)]">
             Client Reviews
           </p>
           <span className="h-px w-10 bg-[#c9a227]/70" aria-hidden />
         </div>
 
         <div
-          className="relative -z-10 -mx-4 sm:-mx-6 h-[min(100vw,26rem)] sm:h-[32rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:absolute [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:inset-y-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:right-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:m-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:h-full [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:aspect-[4/3] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:w-auto [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[62%] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[58%] [@media(min-width:80rem)_and_(min-aspect-ratio:1/1)]:max-w-[60%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.3)_22%,black_50%)]"
+          className="relative -z-10 -mx-4 sm:-mx-6 h-[min(100vw,26rem)] sm:h-[32rem] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:absolute [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:inset-y-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:right-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:m-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:h-full [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:aspect-[4/3] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:w-auto [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:max-w-[62%] [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:max-w-[58%] [@media(min-width:80rem)_and_(min-aspect-ratio:1/1)]:max-w-[60%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent_0%,rgba(0,0,0,0.5)_10%,black_28%)]"
           aria-hidden
         >
           <Image
             src={HERO_IMAGE_SRC}
             alt=""
             fill
-            className="object-cover object-[62%_45%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:object-[60%_50%]"
+            className="object-cover object-[50%_20%] [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:object-[50%_30%]"
             sizes="(max-width: 768px) 100vw, 60vw"
             priority
           />
@@ -60,7 +60,7 @@ export function ReviewsHero() {
             className="absolute inset-0 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:hidden"
             style={{
               background: [
-                "linear-gradient(180deg, #141c2b 0%, rgba(20,28,43,0.6) 9%, rgba(20,28,43,0) 24%, rgba(20,28,43,0) 52%, rgba(20,28,43,0.55) 68%, rgba(20,28,43,0.9) 84%, #141c2b 97%)",
+                "linear-gradient(180deg, #141c2b 0%, rgba(20,28,43,0.55) 7%, rgba(20,28,43,0) 15%, rgba(20,28,43,0) 52%, rgba(20,28,43,0.55) 68%, rgba(20,28,43,0.9) 84%, #141c2b 97%)",
                 "linear-gradient(90deg, rgba(20,28,43,0.45) 0%, rgba(20,28,43,0) 18%, rgba(20,28,43,0) 82%, rgba(20,28,43,0.45) 100%)",
               ].join(", "),
             }}
