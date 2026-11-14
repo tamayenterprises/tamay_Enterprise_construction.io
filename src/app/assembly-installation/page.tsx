@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AssemblyHero } from "@/components/assembly/AssemblyHero";
+import { AssemblyServicesSection } from "@/components/assembly/AssemblyServicesSection";
 import { AssemblyWhoWeSupportSection } from "@/components/assembly/AssemblyWhoWeSupportSection";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteContactSection } from "@/components/ui/SiteContactSection";
@@ -8,64 +9,15 @@ import { ServiceAppointmentSection } from "@/components/appointments/ServiceAppo
 import { SitePhoto } from "@/components/images/SitePhoto";
 import { SmallProjectEstimatorSection } from "@/components/estimator/SmallProjectEstimatorSection";
 import {
-  ASSEMBLY_CABINET_FEATURE,
-  ASSEMBLY_IMPORTANT_NOTE,
   ASSEMBLY_INTRO,
   ASSEMBLY_SCALE,
-  ASSEMBLY_SERVICE_GROUPS,
   ASSEMBLY_STANDARDS,
   ASSEMBLY_WHY_PARTNERS,
 } from "@/lib/assemblyInstallation";
-import { appointmentScheduleHref } from "@/lib/onlineAppointments";
 import { buildSocialMetadata } from "@/lib/socialMetadata";
 import { SiteText } from "@/components/copy/SiteText";
 
 export const metadata: Metadata = buildSocialMetadata("assembly");
-
-type ServiceCardProps = {
-  title: string;
-  slot: string;
-  imageAlt: string;
-  items: readonly string[];
-  copyPrefix: string;
-};
-
-function ServiceCard({ title, slot, imageAlt, items, copyPrefix }: ServiceCardProps) {
-  return (
-    <article className="border border-gray-200 bg-white overflow-hidden h-full flex flex-col">
-      <figure className="relative aspect-[16/10] w-full bg-gray-100">
-        <SitePhoto slot={slot} alt={imageAlt} sizes="(max-width: 768px) 100vw, 50vw" />
-      </figure>
-      <div className="p-6 flex-1 flex flex-col">
-        <SiteText k={`${copyPrefix}.title`} as="h3" className="font-heading text-lg text-tamay-primary font-semibold mb-4">
-          {title}
-        </SiteText>
-        <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5 flex-1">
-          {items.map((item, index) => (
-            <SiteText k={`${copyPrefix}.item${index + 1}`} as="li" key={`${copyPrefix}.item${index + 1}`}>
-              {item}
-            </SiteText>
-          ))}
-        </ul>
-        <div className="mt-6 pt-4 border-t border-gray-100">
-          <Button href={appointmentScheduleHref("assembly-installation")} variant="accent" className="w-full">
-            <SiteText k={`${copyPrefix}.cta`}>Book Now</SiteText>
-          </Button>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-const ASSEMBLY_GROUP_IMAGE_KEYS = [
-  "assembly.furnitureAssembly",
-  "assembly.storageWarehouse",
-  "assembly.officeAssembly",
-  "assembly.wallMountInstall",
-  "assembly.flatPackAssembly",
-  "assembly.precisionAssembly",
-  "assembly.whiteGloveVanity",
-] as const;
 
 export default function AssemblyInstallationPage() {
   return (
@@ -108,50 +60,7 @@ export default function AssemblyInstallationPage() {
 
       <AssemblyWhoWeSupportSection />
 
-      <section className="py-14 max-w-6xl mx-auto px-4">
-        <SectionHeading
-          copyKey="assembly.types"
-          eyebrow="ASSEMBLY & INSTALLATION SERVICES"
-          title="Types of Assembly and Installation Projects We Handle"
-          subtitle="Our team performs a wide range of furniture assembly and installation services commonly requested by large furniture retailers, logistics providers, and service platforms. Each project is completed with attention to detail, proper alignment, and client-ready results."
-        />
-        <figure className="relative aspect-[21/9] max-w-5xl mx-auto mt-10 mb-8 overflow-hidden rounded-sm">
-          <SitePhoto
-            slot="assembly.cabinetInstall"
-            alt={ASSEMBLY_CABINET_FEATURE.imageAlt}
-            sizes="(max-width: 1024px) 100vw, 1024px"
-          />
-        </figure>
-        <SiteText k="assembly.cabinet.caption" as="p" className="text-center text-sm text-gray-600 max-w-2xl mx-auto mb-10" multiline>
-          {ASSEMBLY_CABINET_FEATURE.caption}
-        </SiteText>
-        <div className="grid md:grid-cols-2 gap-6">
-          {ASSEMBLY_SERVICE_GROUPS.map((group, index) => (
-            <ServiceCard
-              key={group.title}
-              title={group.title}
-              slot={ASSEMBLY_GROUP_IMAGE_KEYS[index] ?? "assembly.furnitureAssembly"}
-              imageAlt={group.imageAlt}
-              items={group.items}
-              copyPrefix={`assembly.group${index + 1}`}
-            />
-          ))}
-        </div>
-      </section>
-
-      <section className="py-12 px-4 bg-tamay-primary/5 border-y border-tamay-primary/20">
-        <div className="max-w-3xl mx-auto text-center">
-          <SiteText k="assembly.important.label" as="p" className="text-2xl md:text-3xl font-bold tracking-widest uppercase text-tamay-primary mb-4">
-            Important
-          </SiteText>
-          <SiteText k="assembly.important.body" as="p" className="text-gray-700 leading-relaxed" multiline>
-            {ASSEMBLY_IMPORTANT_NOTE}
-          </SiteText>
-          <Button href={appointmentScheduleHref("assembly-installation")} variant="accent" className="mt-8">
-            <SiteText k="assembly.important.cta">Request Assembly Support</SiteText>
-          </Button>
-        </div>
-      </section>
+      <AssemblyServicesSection />
 
       <SmallProjectEstimatorSection
         id="assembly-estimator"
