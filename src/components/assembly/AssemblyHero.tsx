@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { SmoothScrollLink } from "@/components/assembly/SmoothScrollLink";
 import { appointmentScheduleHref } from "@/lib/onlineAppointments";
+import { SITE } from "@/lib/site";
 
 const HERO_IMAGE_SRC = "/construction/project-cost-estimator.png";
 
@@ -135,13 +135,15 @@ export function AssemblyHero() {
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3 [@media(min-width:48rem)_and_(min-aspect-ratio:1/1)]:mt-5 [@media(min-width:64rem)_and_(min-aspect-ratio:1/1)]:mt-6">
-            <SmoothScrollLink
-              targetId="assembly-estimator"
+            <a
+              href={SITE.estimateUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className={`${primaryCtaClass} md:max-lg:px-4 md:whitespace-nowrap`}
             >
               Estimate My Project
               <span aria-hidden>→</span>
-            </SmoothScrollLink>
+            </a>
             <Link
               href={appointmentScheduleHref("assembly-installation")}
               className={`${secondaryCtaClass} md:max-lg:px-4 md:whitespace-nowrap`}
